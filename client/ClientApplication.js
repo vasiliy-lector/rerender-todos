@@ -13,7 +13,7 @@ class ClientApplication {
 
         setInterval(() => addTodo({ payload: { text: 'new todo' }, store }), 5000);
 
-        attach(html `<unit Class=${Application} />`, document.getElementById('application'), { store });
+        attach(html `<instance of=${Application} />`, document.getElementById('application'), { store });
     }
 }
 

@@ -17,11 +17,11 @@ class TodoList extends Component {
 
         return html `<div class="todo-list">
             <ul class="todo-list__list">
-                ${todos.map(todo => html `<unit Class=${Item} todo=${todo} />`)}
+                ${todos.map(todo => html `<instance of=${Item} todo=${todo} />`)}
             </ul>
             <div class="todo-list__add">
-                <unit Class=${Input} placeholder="New todo" />
-                <unit Class=${Button} onClick=${this.handleNewTodo}>${this.props.buttonText}</unit>
+                <instance of=${Input} placeholder="New todo" />
+                <instance of=${Button} onClick=${this.handleNewTodo}>${this.props.buttonText}</instance>
             </div>
             ${this.props.children}
         </div>`;

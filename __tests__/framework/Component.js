@@ -9,7 +9,7 @@ class Block extends Component {
 describe('renderToString', () => {
 
     it('should return expected string', () => {
-        expect(renderToString(html `<unit Class=${Block} />`)).toEqual('<div class="block">Text of block</div>');
+        expect(renderToString(html `<instance of=${Block} />`)).toEqual('<div class="block">Text of block</div>');
     });
 
 });

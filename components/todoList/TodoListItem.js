@@ -15,8 +15,8 @@ class TodoListItem extends Component {
         return html `<li class="todo-list__item">
             ${todo.text}
             ${children}
-            <unit Class=${Button} class="todo-list__edit" onClick=${this.handleEdit}>edit</unit>
-            <unit Class=${Button} class="todo-list__remove" onClick=${this.handleRemove}>remove</unit>
+            <instance of=${Button} class="todo-list__edit" onClick=${this.handleEdit}>edit</instance>
+            <instance of=${Button} class="todo-list__remove" onClick=${this.handleRemove}>remove</instance>
         </li>`;
     }
 }

@@ -70,7 +70,7 @@ class ServerApplication {
     }
 
     getHtml(store = {}) {
-        let application = renderToString(html `<unit Class=${Application} />`, { store }),
+        let application = renderToString(html `<instance of=${Application} />`, { store }),
             hash = getHash(application);
 
         return `<!DOCTYPE html><html>

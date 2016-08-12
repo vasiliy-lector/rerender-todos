@@ -16,7 +16,7 @@ class Application extends Component {
     render() {
         let PageComponent = pages[this.props.route || 'Index'];
 
-        return html `<unit Class=${PageComponent} />`;
+        return html `<instance of=${PageComponent} />`;
     }
 }
 
