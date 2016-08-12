@@ -1,4 +1,4 @@
-import { Reducer } from 'jsunit';
+import { Reducer } from 'rerender';
 
 class Routes extends Reducer {
 

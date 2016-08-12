@@ -1,4 +1,4 @@
-import { Component, html } from 'jsunit';
+import { Component, html } from 'rerender';
 import Button from '../button/Button';
 
 class TodoListItem extends Component {

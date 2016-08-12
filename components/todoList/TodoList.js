@@ -1,4 +1,4 @@
-import { Component, connect, html } from 'jsunit';
+import { Component, connect, html } from 'rerender';
 import Input from '../input/Input';
 import Button from '../button/Button';
 import Item from './TodoListItem';

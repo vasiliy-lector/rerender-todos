@@ -1,5 +1,5 @@
 import Button from '../../../components/button/Button';
-import { renderToString, html } from 'jsunit';
+import { renderToString, html } from 'rerender';
 
 describe('Button', () => {
     it('should return expected string', () => {

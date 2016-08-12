@@ -1,4 +1,4 @@
-import { Component, renderToString, html } from 'jsunit';
+import { Component, renderToString, html } from 'rerender';
 
 class Block extends Component {
     render() {

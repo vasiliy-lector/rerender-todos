@@ -1,4 +1,4 @@
-import { html } from 'jsunit';
+import { html } from 'rerender';
 
 function Button({
     text = '',

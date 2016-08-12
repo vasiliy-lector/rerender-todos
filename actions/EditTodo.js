@@ -1,4 +1,4 @@
-import { Action } from 'jsunit';
+import { Action } from 'rerender';
 
 class EditTodo extends Action {
     execute({ payload: todo, store }) {

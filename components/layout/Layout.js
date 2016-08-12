@@ -1,4 +1,4 @@
-import { Component, html } from 'jsunit';
+import { Component, html } from 'rerender';
 
 class Layout extends Component {
     render() {

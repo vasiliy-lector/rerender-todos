@@ -1,5 +1,5 @@
 import Input from '../../../components/input/Input';
-import { renderToString, html } from 'jsunit';
+import { renderToString, html } from 'rerender';
 
 describe('Input', () => {
     it('should return expected string', () => {

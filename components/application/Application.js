@@ -1,4 +1,4 @@
-import { Component, connect, html } from 'jsunit';
+import { Component, connect, html } from 'rerender';
 import * as pages from '../../pages/pages';
 
 class Application extends Component {

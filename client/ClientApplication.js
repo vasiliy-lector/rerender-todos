@@ -1,4 +1,4 @@
-import { Store, attach, html } from 'jsunit';
+import { Store, attach, html } from 'rerender';
 import Application from '../components/application/Application.js';
 import addTodo from '../actions/AddTodo';
 import Todos from '../reducers/Todos';

@@ -1,5 +1,5 @@
 import express from 'express';
-import { getHash, Store, renderToString, html } from 'jsunit';
+import { getHash, Store, renderToString, html } from 'rerender';
 import { defaults, find } from 'lodash';
 import debug from 'debug';
 import routes from '../configs/routes';

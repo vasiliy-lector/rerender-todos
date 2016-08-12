@@ -1,4 +1,4 @@
-import { createAction } from 'jsunit';
+import { createAction } from 'rerender';
 import initialState from '../configs/initialState';
 
 const GetTodos = createAction(({ store, resolve }) => {
