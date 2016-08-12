@@ -1,5 +1,5 @@
 import express from 'express';
-import { getHash, Store, renderToString, t7 } from 'jsunit';
+import { getHash, Store, renderToString, html } from 'jsunit';
 import { defaults, find } from 'lodash';
 import debug from 'debug';
 import routes from '../configs/routes';
@@ -70,8 +70,8 @@ class ServerApplication {
     }
 
     getHtml(store = {}) {
-        let html = renderToString(t7 `<unit Class=${Application} />`, { store }),
-            hash = getHash(html);
+        let application = renderToString(html `<unit Class=${Application} />`, { store }),
+            hash = getHash(application);
 
         return `<!DOCTYPE html><html>
             <head>
@@ -79,7 +79,7 @@ class ServerApplication {
                 ${this.getCss()}
             </head>
             <body>
-                <div id="application" data-hash="${hash}">${html}</div>
+                <div id="application" data-hash="${hash}">${application}</div>
                 ${this.getScripts(store)}
             </body>
         </html>`;

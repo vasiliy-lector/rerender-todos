@@ -1,4 +1,4 @@
-import { Component, connect, t7 } from 'jsunit';
+import { Component, connect, html } from 'jsunit';
 import Input from '../input/Input';
 import Button from '../button/Button';
 import Item from './TodoListItem';
@@ -15,9 +15,9 @@ class TodoList extends Component {
     render() {
         let { todos = [] } = this.props;
 
-        return t7 `<div class="todo-list">
+        return html `<div class="todo-list">
             <ul class="todo-list__list">
-                ${todos.map(todo => t7 `<unit Class=${Item} todo=${todo} />`)}
+                ${todos.map(todo => html `<unit Class=${Item} todo=${todo} />`)}
             </ul>
             <div class="todo-list__add">
                 <unit Class=${Input} placeholder="New todo" />

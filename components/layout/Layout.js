@@ -1,8 +1,8 @@
-import { Component, t7 } from 'jsunit';
+import { Component, html } from 'jsunit';
 
 class Layout extends Component {
     render() {
-        return t7 `<div class="layout">
+        return html `<div class="layout">
             <div class="layout__header">
                 ${this.props.headerText}
             </div>

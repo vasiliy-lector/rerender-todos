@@ -1,4 +1,4 @@
-import { Component, t7 } from 'jsunit';
+import { Component, html } from 'jsunit';
 import Button from '../button/Button';
 
 class TodoListItem extends Component {
@@ -12,7 +12,7 @@ class TodoListItem extends Component {
 
     render() {
         let { children, todo } = this.props;
-        return t7 `<li class="todo-list__item">
+        return html `<li class="todo-list__item">
             ${todo.text}
             ${children}
             <unit Class=${Button} class="todo-list__edit" onClick=${this.handleEdit}>edit</unit>

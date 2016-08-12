@@ -1,10 +1,10 @@
-import { t7 } from 'jsunit';
+import { html } from 'jsunit';
 
 function Button({
     text = '',
     onClick
 } = {}, children) {
-    return t7 `<button onclick=${onClick}>
+    return html `<button onclick=${onClick}>
         ${text}
         ${children}
     </button>`;

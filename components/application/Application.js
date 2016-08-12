@@ -1,4 +1,4 @@
-import { Component, connect, t7 } from 'jsunit';
+import { Component, connect, html } from 'jsunit';
 import * as pages from '../../pages/pages';
 
 class Application extends Component {
@@ -16,7 +16,7 @@ class Application extends Component {
     render() {
         let PageComponent = pages[this.props.route || 'Index'];
 
-        return t7 `<unit Class=${PageComponent} />`;
+        return html `<unit Class=${PageComponent} />`;
     }
 }
 

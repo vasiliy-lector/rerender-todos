@@ -1,4 +1,4 @@
-import { Component, t7 } from 'jsunit';
+import { Component, html } from 'jsunit';
 
 class Input extends Component {
     render() {
@@ -9,7 +9,7 @@ class Input extends Component {
             onChange
         } = this.props || {};
 
-        return t7 `<input placeholder=${placeholder} value=${value} />`;
+        return html `<input placeholder=${placeholder} value=${value} />`;
     }
 }
 

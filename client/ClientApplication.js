@@ -1,4 +1,4 @@
-import { Store, attach, t7 } from 'jsunit';
+import { Store, attach, html } from 'jsunit';
 import Application from '../components/application/Application.js';
 import addTodo from '../actions/AddTodo';
 import Todos from '../reducers/Todos';
@@ -13,7 +13,7 @@ class ClientApplication {
 
         setInterval(() => addTodo({ payload: { text: 'new todo' }, store }), 5000);
 
-        attach(t7 `<unit Class=${Application} />`, document.getElementById('application'), { store });
+        attach(html `<unit Class=${Application} />`, document.getElementById('application'), { store });
     }
 }
 

@@ -1,8 +1,8 @@
-import { Component, t7 } from 'jsunit';
+import { Component, html } from 'jsunit';
 
 class Error404 extends Component {
     render() {
-        return t7 `<div>404 Error</div>`;
+        return html `<div>404 Error</div>`;
     }
 }
 
