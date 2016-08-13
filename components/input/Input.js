@@ -2,14 +2,7 @@ import { Component, html } from 'rerender';
 
 class Input extends Component {
     render() {
-        var {
-            placeholder,
-            value,
-            onClick,
-            onChange
-        } = this.props || {};
-
-        return html `<input placeholder=${placeholder} value=${value} />`;
+        return html `<input _=${this.props} />`;
     }
 }
 

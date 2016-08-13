@@ -11,12 +11,14 @@ class TodoListItem extends Component {
     }
 
     render() {
-        let { children, todo } = this.props;
-        return html `<li class="todo-list__item">
+        let { props, children } = this,
+            { todo } = props;
+
+        return html `<li className="todo-list__item">
             ${todo.text}
             ${children}
-            <instance of=${Button} class="todo-list__edit" onClick=${this.handleEdit}>edit</instance>
-            <instance of=${Button} class="todo-list__remove" onClick=${this.handleRemove}>remove</instance>
+            <instance of=${Button} className="todo-list__edit" onClick=${this.handleEdit}>edit</instance>
+            <instance of=${Button} className="todo-list__remove" onClick=${this.handleRemove}>remove</instance>
         </li>`;
     }
 }

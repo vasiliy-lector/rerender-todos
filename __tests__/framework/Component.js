@@ -2,7 +2,7 @@ import { Component, renderToString, html } from 'rerender';
 
 class Block extends Component {
     render() {
-        return html `<div class="block">Text of block</div>`;
+        return html `<div className="block">Text of block</div>`;
     }
 }
 

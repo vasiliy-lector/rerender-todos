@@ -1,18 +1,9 @@
 import { html } from 'rerender';
 
-function Button({
-    text = '',
-    onClick
-} = {}, children) {
-    return html `<button onclick=${onClick}>
-        ${text}
+function Button(props, children) {
+    return html `<button _=${props}>
         ${children}
     </button>`;
 }
-
-Button.types = {
-    text: 'string',
-    onClick: 'function'
-};
 
 export default Button;

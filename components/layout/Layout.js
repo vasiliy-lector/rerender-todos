@@ -2,11 +2,11 @@ import { Component, html } from 'rerender';
 
 class Layout extends Component {
     render() {
-        return html `<div class="layout">
-            <div class="layout__header">
+        return html `<div className="layout">
+            <div className="layout__header">
                 ${this.props.headerText}
             </div>
-            ${this.props.children}
+            ${this.children}
         </div>`;
     }
 }
