@@ -7,18 +7,19 @@ class TodoListItem extends Component {
     }
 
     handleRemove() {
-        this.props.actions.RemoveTodo({ id: this.props.todo.id });
+        let { id } = this.props.todo;
+
+        this.props.removeTodo(id);
     }
 
     render() {
-        let { props, children } = this,
-            { todo } = props;
+        let { todo } = this.props;
 
         return html `<li className="todo-list__item">
             ${todo.text}
-            ${children}
-            <instance of=${Button} className="todo-list__edit" onClick=${this.handleEdit}>edit</instance>
-            <instance of=${Button} className="todo-list__remove" onClick=${this.handleRemove}>remove</instance>
+            <instance of=${Button}
+                className="todo-list__remove"
+                onClick=${this.handleRemove}>Удалить</instance>
         </li>`;
     }
 }

@@ -4,25 +4,30 @@ import Button from '../button/Button';
 import Item from './TodoListItem';
 import getTodos from '../../actions/GetTodos';
 import addTodo from '../../actions/AddTodo';
+import removeTodo from '../../actions/RemoveTodo';
 
 class TodoList extends Component {
     init() {
-        this.newTodoValue = '';
+        this.state.newTodoValue = '';
     }
 
     handleSubmit(event) {
         this.props.addTodo({
-            text: this.newTodoValue
+            text: this.state.newTodoValue
         });
 
-        this.newTodoValue = '';
+        this.setState({
+            newTodoValue: ''
+        });
         event.target.reset();
 
         event.preventDefault();
     }
 
     handleInput(event) {
-        this.newTodoValue = event.target.value;
+        this.setState({
+            newTodoValue: event.target.value
+        });
     }
 
     render() {
@@ -30,7 +35,9 @@ class TodoList extends Component {
 
         return html `<div className="todo-list">
             <ul className="todo-list__list">
-                ${todos.map(todo => html `<instance of=${Item} todo=${todo} />`)}
+                ${todos.map(todo => html `<instance of=${Item}
+                    removeTodo=${this.props.removeTodo}
+                    todo=${todo} />`)}
             </ul>
             <div className="todo-list__add">
                 <form onSubmit=${this.handleSubmit}>
@@ -41,6 +48,7 @@ class TodoList extends Component {
                     <instance of=${Button}>${this.props.buttonText}</instance>
                 </form>
             </div>
+            Вы ввели текст: "${this.state.newTodoValue}"
             ${this.children}
         </div>`;
     }
@@ -74,7 +82,8 @@ const
         };
     },
     actions = {
-        addTodo
+        addTodo,
+        removeTodo
     };
 
 export default connect({ get, actions })(TodoList);

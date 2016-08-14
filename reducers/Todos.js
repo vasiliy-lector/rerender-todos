@@ -3,7 +3,7 @@ import { Reducer } from 'rerender';
 class Todos extends Reducer {
 
     groupTodosById(todos) {
-        return todos.reduce((memo, value, index) => {
+        return todos.reduce((memo, value) => {
             memo[value.id] = value;
 
             return memo;
@@ -44,7 +44,7 @@ class Todos extends Reducer {
         let { todos: prevTodos } = state,
             todos = prevTodos.reduce((memo, item) => {
                 if (item.id !== id) {
-                    memo.push(value);
+                    memo.push(item);
                 }
 
                 return memo;
