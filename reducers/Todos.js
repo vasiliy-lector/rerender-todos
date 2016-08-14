@@ -30,16 +30,6 @@ class Todos extends Reducer {
         };
     }
 
-    updateTodo(state, todo) {
-        let { todos: prevTodos } = state,
-            todos = prevTodos.map(item => item.id === todo.id ? todo : item);
-
-        return {
-            todos,
-            todosById: this.groupTodosById(todos)
-        };
-    }
-
     removeTodo(state, id) {
         let { todos: prevTodos } = state,
             todos = prevTodos.reduce((memo, item) => {
@@ -82,7 +72,6 @@ Todos.path = 'todos';
 Todos.handlers = {
     ADD_TODO: 'addTodo',
     TODOS_LOADED: 'todosLoaded',
-    UPDATE_TODO: 'updateTodo',
     REMOVE_TODO: 'removeTodo'
 };
 

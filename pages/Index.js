@@ -4,11 +4,8 @@ import Layout from '../components/layout/Layout';
 
 class Index extends Component {
     render() {
-        return html `<instance of=${Layout}>
-            <h1>Todo list</h1>
-            <instance of=${TodoList} buttonText="Add todo">
-                <p>Text after todos. 1 + 2 = ${ 1 + 2 }</p>
-            </instance>
+        return html `<instance of=${Layout} title="todos">
+            <instance of=${TodoList} buttonText="Add todo" />
         </instance>`;
     }
 }

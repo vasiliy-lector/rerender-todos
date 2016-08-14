@@ -1,6 +1,7 @@
 import express from 'express';
 import { getHash, Store, renderToString, html } from 'rerender';
-import { defaults, find } from 'lodash';
+import defaults from 'lodash/defaults';
+import find from 'lodash/find';
 import debug from 'debug';
 import routes from '../configs/routes';
 import Todos from '../reducers/Todos';
@@ -97,7 +98,7 @@ class ServerApplication {
 
     getScripts(store) {
         let scripts = [
-            // '/node_modules/less/dist/less.js',
+            '/node_modules/less/dist/less.js',
             '/dist/ClientApplication.js'
         ].map(path => `<script src="${staticRoot}${path}"></script>`);
 
