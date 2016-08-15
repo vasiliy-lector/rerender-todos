@@ -2,9 +2,9 @@ import { Component, connect, html } from 'rerender';
 import Input from '../input/Input';
 import Button from '../button/Button';
 import Item from './TodoListItem';
-import getTodos from '../../actions/GetTodos';
-import addTodo from '../../actions/AddTodo';
-import removeTodo from '../../actions/RemoveTodo';
+import getTodos from '../../actions/getTodos';
+import addTodo from '../../actions/addTodo';
+import removeTodo from '../../actions/removeTodo';
 
 class TodoList extends Component {
     init() {
