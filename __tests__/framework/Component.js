@@ -1,4 +1,4 @@
-import { Component, renderToString, html } from 'rerender';
+import { Component, serverRender, html } from 'rerender';
 
 class Block extends Component {
     render() {
@@ -6,10 +6,10 @@ class Block extends Component {
     }
 }
 
-describe('renderToString', () => {
+describe('serverRender', () => {
 
     it('should return expected string', () => {
-        expect(renderToString(html `<instance of=${Block} />`)).toEqual('<div class="block">Text of block</div>');
+        expect(serverRender(html `<instance of=${Block} />`)).toEqual('<div class="block">Text of block</div>');
     });
 
 });

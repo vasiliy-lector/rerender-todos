@@ -1,4 +1,4 @@
-import { Store, attach, html } from 'rerender';
+import { Store, clientRender, html } from 'rerender';
 import Application from '../components/application/Application.js';
 import Todos from '../reducers/Todos';
 import Routes from '../reducers/Routes';
@@ -10,7 +10,7 @@ class ClientApplication {
             state
         });
 
-        attach(html `<instance of=${Application} />`, document.getElementById('application'), { store });
+        clientRender(html `<instance of=${Application} />`, document.getElementById('application'), { store });
     }
 }
 
