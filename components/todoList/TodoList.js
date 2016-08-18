@@ -43,6 +43,7 @@ class TodoList extends Component {
                 <form onSubmit=${this.handleSubmit}>
                     <instance of=${Input}
                         name="text"
+                        autocomplete="off"
                         onInput=${this.handleInput}
                         placeholder="New todo" />
                     <instance of=${Button}>${this.props.buttonText}</instance>
