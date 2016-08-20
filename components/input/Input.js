@@ -1,9 +1,7 @@
-import { Component, html } from 'rerender';
+import { html } from 'rerender';
 
-class Input extends Component {
-    render() {
-        return html `<input _=${this.props} />`;
-    }
+function Input(props) {
+    return html `<input _=${props} />`;
 }
 
 export default Input;
