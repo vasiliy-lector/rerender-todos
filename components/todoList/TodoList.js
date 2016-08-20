@@ -73,10 +73,10 @@ TodoList.autoBind = ['handleSubmit', 'handleInput'];
 const
     get = function({
         todos: {
-            todos = [],
-            todosById = {}
-        } = {}
-    } = {}) {
+            list: todos,
+            byId: todosById
+        }
+    }) {
         return {
             todos,
             todosById

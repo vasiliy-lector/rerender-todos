@@ -1,8 +1,8 @@
 export default {
     route: 'Index',
     todos: {
-        todos: [{
-            id: 1,
+        list: [{
+            id: 0,
             text: 'First todo'
         }]
     }

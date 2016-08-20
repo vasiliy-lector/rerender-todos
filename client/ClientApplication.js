@@ -1,13 +1,14 @@
 import { Store, clientRender, html } from 'rerender';
 import Application from '../components/application/Application.js';
-import Todos from '../reducers/Todos';
-import Routes from '../reducers/Routes';
+import dehydrate from '../reducers/dehydrate';
+import rehydrate from '../reducers/rehydrate';
 
 class ClientApplication {
     constructor(state) {
         let store = new Store({
-            reducers: [Todos, Routes],
-            state
+            state,
+            dehydrate,
+            rehydrate
         });
 
         clientRender(html `<instance of=${Application} />`, document.getElementById('application'), { store });

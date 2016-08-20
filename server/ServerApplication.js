@@ -4,12 +4,12 @@ import defaults from 'lodash/defaults';
 import find from 'lodash/find';
 import debug from 'debug';
 import routes from '../configs/routes';
-import Todos from '../reducers/Todos';
-import Routes from '../reducers/Routes';
 import staticConfig from '../configs/static';
 import env from '../configs/env';
 import Application from '../components/application/Application';
 import * as pages from '../pages/pages';
+import dehydrate from '../reducers/dehydrate';
+import rehydrate from '../reducers/rehydrate';
 
 defaults(process.env, env);
 debug.enable(process.env.DEBUG);
@@ -42,8 +42,9 @@ class ServerApplication {
             var route = this.getRoute(request.path) || ERROR_404,
                 { initActions = [] } = pages[route],
                 store = new Store({
-                    reducers: [Todos, Routes],
-                    state: Object.assign({}, { routes: { route } })
+                    state: Object.assign({}, { routes: { route } }),
+                    dehydrate,
+                    rehydrate
                 });
 
             logInfo('route', route);
