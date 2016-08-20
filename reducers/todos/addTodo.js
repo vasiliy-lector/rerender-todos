@@ -12,9 +12,9 @@ const addTodo = createReducer(({ payload, state, setState }) => {
         newTodo;
 
     if (!payload.id) {
-        let allIds = Object.keys(prevById),
-            maxId = allIds.length > 0 ? Math.max.apply(Math, allIds) : 0;
-        id = maxId + 1,
+        let allIds = Object.keys(prevById);
+
+        id = allIds.length > 0 ? Math.max.apply(Math, allIds) + 1 : 0,
         newTodo = Object.assign({}, payload, {
             id
         });
