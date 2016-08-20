@@ -99,7 +99,7 @@ class ServerApplication {
 
     getScripts(store) {
         let scripts = [
-            '/node_modules/less/dist/less.js',
+            // '/node_modules/less/dist/less.js',
             '/dist/ClientApplication.js'
         ].map(path => `<script src="${staticRoot}${path}"></script>`);
 

@@ -1,3 +1,4 @@
 export default {
-    '/': 'Index'
+    '/': 'Index',
+    '/second/': 'Second'
 };
