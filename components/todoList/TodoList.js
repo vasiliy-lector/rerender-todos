@@ -1,7 +1,7 @@
 import { Component, connect, html } from 'rerender';
 import Input from '../input/Input';
 import Button from '../button/Button';
-import Item from './TodoListItem';
+import Items from './TodoListItems';
 import getTodos from '../../actions/getTodos';
 import addTodo from '../../actions/addTodo';
 import removeTodo from '../../actions/removeTodo';
@@ -31,14 +31,12 @@ class TodoList extends Component {
     }
 
     render() {
-        let { todos = [] } = this.props;
+        let { removeTodo, todos } = this.props;
 
         return html `<div className="todo-list">
-            <ul className="todo-list__list">
-                ${todos.map(todo => html `<instance of=${Item}
-                    removeTodo=${this.props.removeTodo}
-                    todo=${todo} />`)}
-            </ul>
+            <instance of=${Items}
+                todos=${todos}
+                removeTodo=${removeTodo} />
             <div className="todo-list__add">
                 <form onSubmit=${this.handleSubmit}>
                     <instance of=${Input}
@@ -57,11 +55,10 @@ class TodoList extends Component {
 
 TodoList.types = {
     todos: 'array',
-    todosById: 'object'
+    addTodo: 'function',
+    removeTodo: 'function'
 };
-TodoList.defaults = {
-    todosById: {}
-};
+
 TodoList.required = ['todos'];
 TodoList.singleton = true;
 
@@ -73,18 +70,17 @@ TodoList.autoBind = ['handleSubmit', 'handleInput'];
 const
     get = function({
         todos: {
-            list: todos,
-            byId: todosById
+            list: todos
         }
     }) {
         return {
-            todos,
-            todosById
+            todos
         };
     },
     actions = {
         addTodo,
         removeTodo
-    };
+    },
+    watch = 'todos';
 
-export default connect({ get, actions })(TodoList);
+export default connect({ watch, get, actions })(TodoList);

@@ -23,9 +23,10 @@ class Application extends Component {
 Application.singleton = true;
 
 const get = ({ routes = {} }) => {
-    return {
-        route: routes.route
-    };
-};
+        return {
+            route: routes.route
+        };
+    },
+    watch = 'routes';
 
-export default connect({ get })(Application);
+export default connect({ watch, get })(Application);
