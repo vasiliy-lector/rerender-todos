@@ -1,4 +1,8 @@
-export default {
+const routes = {
     '/': 'Index',
-    '/second/': 'Second'
+    '/second/': 'Second',
+    '/todos/': 'Todos',
+    '/forms/': 'Forms'
 };
+
+export default routes;

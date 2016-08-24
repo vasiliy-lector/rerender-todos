@@ -1,5 +1,7 @@
 import { Component, connect, html } from 'rerender';
+import navigateUrl from '../../actions/navigateUrl';
 import changeRoute from '../../reducers/routes/changeRoute';
+import routes from '../../configs/routes';
 import * as pages from '../../pages/pages';
 
 class Application extends Component {
@@ -14,15 +16,37 @@ class Application extends Component {
         this.props.changeRoute(event.state.route);
     }
 
-    render() {
-        let PageComponent = pages[this.props.route || 'Index'];
+    handleClick(event) {
+        let currentNode = event.target;
 
-        return html `<instance of=${PageComponent} />`;
+        while(currentNode) {
+            if (currentNode.tagName === 'A') {
+                let url = currentNode.pathname,
+                    external = currentNode.host !== location.host;
+
+                if (url && (routes[url] || !external)) {
+                    event.preventDefault();
+                    this.props.navigateUrl(url);
+                }
+
+                break;
+            } else {
+                currentNode = currentNode.parentNode;
+            }
+        }
+    }
+
+    render() {
+        let PageComponent = pages[this.props.route];
+
+        return html `<div onClick=${this.handleClick}>
+            <instance of=${PageComponent} />
+        </div>`;
     }
 }
 
 Application.singleton = true;
-Application.autoBind = ['handlePopState'];
+Application.autoBind = ['handlePopState', 'handleClick'];
 
 const get = ({ routes = {} }) => {
         return {
@@ -31,6 +55,7 @@ const get = ({ routes = {} }) => {
     },
     watch = 'routes',
     actions = {
+        navigateUrl,
         changeRoute
     };
 
