@@ -1,21 +1,8 @@
-import { Component, html } from 'rerender';
+import { Component, debug, html } from 'rerender';
 
 class Input extends Component {
-    handleSetRef(domNode) {
-        if (typeof this.lastValue !== 'undefined') {
-            domNode.value = this.lastValue;
-            if (this.focused) {
-                let defaultCaret = this.lastValue.length,
-                    {
-                        lastSelectionStart = defaultCaret,
-                        lastSelectionEnd = defaultCaret,
-                        lastSelectionDirection = 'none'
-                    } = this;
-
-                domNode.focus();
-                domNode.setSelectionRange(lastSelectionStart, lastSelectionEnd, lastSelectionDirection);
-            }
-        }
+    handleRef(name, ref) {
+        debug.log('Input get ref', name, ref);
     }
 
     handleFocus() {
@@ -29,15 +16,27 @@ class Input extends Component {
         this.lastSelectionDirection = undefined;
     }
 
+    handleChange(event) {
+        this.lastChecked = event.target.checked;
+    }
+
     handleInput(event) {
         this.lastValue = event.target.value;
         this.props.onInput && this.props.onInput(event);
     }
 
     saveCaret(event) {
-        this.lastSelectionStart = event.target.selectionStart;
-        this.lastSelectionEnd = event.target.selectionEnd;
-        this.lastSelectionDirection = event.target.selectionDirection;
+        if (this.getType() === 'text') {
+            this.lastSelectionStart = event.target.selectionStart;
+            this.lastSelectionEnd = event.target.selectionEnd;
+            this.lastSelectionDirection = event.target.selectionDirection;
+        }
+    }
+
+    getType() {
+        let { type = 'text' } = this.props;
+
+        return type;
     }
 
     render() {
@@ -45,12 +44,14 @@ class Input extends Component {
             onInput=${this.handleInput}
             onBlur=${this.handleBlur}
             onFocus=${this.handleFocus}
+            onChange=${this.handleChange}
             onKeyUp=${this.saveCaret}
             onMouseUp=${this.saveCaret}
-            onSetRef=${this.handleSetRef} />`;
+            ref=${this.handleRef}
+        />`;
     }
 }
 
-Input.autoBind = ['handleInput', 'handleSetRef', 'handleFocus', 'handleBlur', 'saveCaret'];
+Input.autoBind = ['handleInput', 'handleRef', 'handleFocus', 'handleBlur', 'saveCaret', 'handleChange'];
 
 export default Input;

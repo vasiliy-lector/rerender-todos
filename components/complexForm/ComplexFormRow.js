@@ -1,20 +1,23 @@
 import { html } from 'rerender';
 
-function ComplexFormRow({ title }, children) {
+function ComplexFormRow({ title, label }, children) {
     return html `<div className="complex-form__row">
-        <label>
-            <div className="complex-form__row-title">
-                ${title}
-            </div>
-            <div className="complex-form__row-component">
-                ${children}
-            </div>
-        </label>
+        <div className="complex-form__row-title">
+            ${label ? html `<label>${title}</label>` : title}
+        </div>
+        <div className="complex-form__row-component">
+            ${children}
+        </div>
     </div>`;
 }
 
 ComplexFormRow.types = {
-    title: 'string'
+    title: 'string',
+    label: 'boolean'
+};
+
+ComplexFormRow.defaults = {
+    label: true
 };
 
 export default ComplexFormRow;
