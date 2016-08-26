@@ -9,7 +9,7 @@ class Block extends Component {
 describe('serverRender', () => {
 
     it('should return expected string', () => {
-        expect(serverRender(html `<instance of=${Block} />`)).toEqual('<div class="block">Text of block</div>');
+        expect(serverRender(html `<instance of=${Block} />`, { omitIds: true })).toEqual('<div class="block">Text of block</div>');
     });
 
 });
