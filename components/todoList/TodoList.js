@@ -11,6 +11,10 @@ class TodoList extends Component {
         this.state.newTodoValue = '';
     }
 
+    handleNewTodoRef(ref) {
+        this.newTodoInput = ref;
+    }
+
     handleSubmit(event) {
         this.props.addTodo({
             text: this.state.newTodoValue
@@ -19,8 +23,8 @@ class TodoList extends Component {
         this.setState({
             newTodoValue: ''
         });
-        event.target.reset();
 
+        this.newTodoInput.reset();
         event.preventDefault();
     }
 
@@ -40,6 +44,7 @@ class TodoList extends Component {
             <div className="todo-list__add">
                 <form onSubmit=${this.handleSubmit}>
                     <instance of=${Input}
+                        ref=${this.handleNewTodoRef}
                         name="text"
                         autocomplete="off"
                         onInput=${this.handleInput}
@@ -64,7 +69,7 @@ TodoList.singleton = true;
 
 TodoList.initActions = [getTodos];
 
-TodoList.autoBind = ['handleSubmit', 'handleInput'];
+TodoList.autoBind = ['handleSubmit', 'handleInput', 'handleNewTodoRef'];
 
 const
     get = function({

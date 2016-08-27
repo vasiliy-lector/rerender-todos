@@ -1,10 +1,9 @@
 import { Component, html } from 'rerender';
 
 const
-    PROPS_TO_OMIT = {
-        checked: true,
-        forceUpdate: true,
-        value: true
+    TYPES_WITH_CHECKED = {
+        checkbox: true,
+        rado: true
     };
 
 class Input extends Component {
@@ -18,15 +17,35 @@ class Input extends Component {
     }
 
     handleChange(event) {
-        this.changed = true;
+        const { type } = this.props;
 
-        let { checked } = event.target;
+        if (TYPES_WITH_CHECKED[type]) {
+            this.changed = true;
 
-        this.setState({
-            checked
-        });
+            let { checked } = event.target;
 
-        this.props.handleChange && this.props.handleChange(event);
+            this.setState({
+                checked
+            });
+        }
+
+        this.props.onChange && this.props.onChange(event);
+    }
+
+    reset() {
+        const { type } = this.props;
+
+        this.changed = false;
+
+        if (TYPES_WITH_CHECKED[type]) {
+            this.setState({
+                checked: this.defaultChecked
+            });
+        } else {
+            this.setState({
+                value: this.defaultValue
+            });
+        }
     }
 
     handleInput(event) {
@@ -38,28 +57,24 @@ class Input extends Component {
             value
         });
 
-        this.props.handleInput && this.props.handleInput(event);
+        this.props.onInput && this.props.onInput(event);
     }
 
     setStateByProps(props = this.props) {
-        let nextState = Object.keys(props).reduce((memo, key) => {
-                if (!PROPS_TO_OMIT[key]) {
-                    memo[key] = props[key];
-                }
+        let nextState = Object.assign({}, props),
+            { value = '', checked = false, type } = props;
 
-                return memo;
-            }, {}),
-            { value, forceUpdate, checked } = props;
+        if (TYPES_WITH_CHECKED[type]) {
+            this.defaultChecked = checked;
 
-        this.defaultValue = value;
-
-        if (!this.changed || forceUpdate) {
-            if (typeof value !== 'undefined') {
-                nextState.value = value;
-            }
-
-            if (typeof checked !== 'undefined') {
+            if (!this.changed) {
                 nextState.checked = checked;
+            }
+        } else {
+            this.defaultValue = value;
+
+            if (!this.changed) {
+                nextState.value = value;
             }
         }
 
@@ -73,6 +88,10 @@ class Input extends Component {
         />`;
     }
 }
+
+Input.defaults = {
+    type: 'text'
+};
 
 Input.autoBind = ['handleInput', 'handleChange'];
 
