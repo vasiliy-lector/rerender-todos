@@ -1,5 +1,6 @@
 import { Component, html } from 'rerender';
 import Input from '../input/Input';
+import Textarea from '../textarea/Textarea';
 import ComplexFormRow from './ComplexFormRow';
 
 class ComplexForm extends Component {
@@ -41,6 +42,13 @@ class ComplexForm extends Component {
                         }}
                         placeholder="DD.MM.YYYY"
                     />
+                </instance>
+                <instance of=${ComplexFormRow} title="A little about yourself">
+                    <instance of=${Textarea}
+                        name="about"
+                        rows="10"
+                        value="Initial text"
+                        placeholder="Text here" />
                 </instance>
                 <instance of=${ComplexFormRow} title="Sex" label=${false}>
                     <p>

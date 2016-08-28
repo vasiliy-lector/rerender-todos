@@ -3,7 +3,7 @@ import { Component, html } from 'rerender';
 const
     TYPES_WITH_CHECKED = {
         checkbox: true,
-        rado: true
+        radio: true
     };
 
 class Input extends Component {
