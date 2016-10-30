@@ -78,6 +78,8 @@ class Input extends Component {
             }
         }
 
+        delete nextState.ref;
+
         this.setState(nextState);
     }
 
