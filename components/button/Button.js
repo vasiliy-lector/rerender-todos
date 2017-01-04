@@ -1,7 +1,7 @@
-import { html } from 'rerender';
+import { jsx } from 'rerender';
 
 function Button(props, children) {
-    return html `<button _=${props}>
+    return jsx `<button ${props}>
         ${children}
     </button>`;
 }

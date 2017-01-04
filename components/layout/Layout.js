@@ -1,7 +1,7 @@
-import { html } from 'rerender';
+import { jsx } from 'rerender';
 
 function Layout({ title }, children){
-    return html `<div className="layout">
+    return jsx `<div className="layout">
         <div className="layout__container">
             <div className="layout__header">
                 ${title}

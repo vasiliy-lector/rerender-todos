@@ -1,12 +1,12 @@
-import { html } from 'rerender';
+import { jsx } from 'rerender';
 import Button from '../button/Button';
 
 function TodoListItem({ todo: { text, id }, removeTodo }) {
-    return html `<li className="todo-list__item">
+    return jsx `<li className="todo-list__item">
         ${text}
-        <instance of=${Button}
+        <${Button}
             className="todo-list__remove"
-            onClick=${() => removeTodo(id)}>Удалить</instance>
+            onClick=${() => removeTodo(id)}>Удалить</${Button}>
     </li>`;
 }
 

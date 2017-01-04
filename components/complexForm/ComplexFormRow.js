@@ -1,9 +1,9 @@
-import { html } from 'rerender';
+import { jsx } from 'rerender';
 
 function ComplexFormRow({ title, label }, children) {
-    return html `<div className="complex-form__row">
+    return jsx `<div className="complex-form__row">
         <div className="complex-form__row-title">
-            ${label ? html `<label>${title}</label>` : title}
+            ${label ? jsx `<label>${title}</label>` : title}
         </div>
         <div className="complex-form__row-component">
             ${children}

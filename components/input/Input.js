@@ -1,4 +1,4 @@
-import { Component, html } from 'rerender';
+import { Component, jsx } from 'rerender';
 
 const
     TYPES_WITH_CHECKED = {
@@ -84,7 +84,7 @@ class Input extends Component {
     }
 
     render() {
-        return html `<input _=${this.state}
+        return jsx `<input ${this.state}
             onInput=${this.handleInput}
             onChange=${this.handleChange}
         />`;

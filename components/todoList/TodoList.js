@@ -1,4 +1,4 @@
-import { Component, connect, html } from 'rerender';
+import { Component, connect, jsx } from 'rerender';
 import Input from '../input/Input';
 import Button from '../button/Button';
 import Items from './TodoListItems';
@@ -37,19 +37,19 @@ class TodoList extends Component {
     render() {
         let { removeTodo, todos } = this.props;
 
-        return html `<div className="todo-list">
-            <instance of=${Items}
+        return jsx `<div className="todo-list">
+            <${Items}
                 todos=${todos}
                 removeTodo=${removeTodo} />
             <div className="todo-list__add">
                 <form onSubmit=${this.handleSubmit}>
-                    <instance of=${Input}
+                    <${Input}
                         ref=${this.handleNewTodoRef}
                         name="text"
                         autocomplete="off"
                         onInput=${this.handleInput}
                         placeholder="New todo" />
-                    <instance of=${Button}>${this.props.buttonText}</instance>
+                    <${Button}>${this.props.buttonText}</${Input}>
                 </form>
             </div>
             Вы ввели текст: "${this.state.newTodoValue}"

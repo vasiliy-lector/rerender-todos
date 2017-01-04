@@ -1,9 +1,9 @@
-import { html } from 'rerender';
+import { jsx } from 'rerender';
 import Item from './TodoListItem';
 
 function TodoListItems({ removeTodo, todos }) {
-    return html `<ul className="todo-list__list">
-        ${todos.map(todo => html `<instance of=${Item}
+    return jsx `<ul className="todo-list__list">
+        ${todos.map(todo => jsx `<${Item}
             key=${todo.id}
             removeTodo=${removeTodo}
             todo=${todo} />`)}

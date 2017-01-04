@@ -1,4 +1,4 @@
-import { Store, clientRender, html } from 'rerender';
+import { Store, clientRender, jsx } from 'rerender';
 import Application from '../components/application/Application.js';
 import dehydrate from '../reducers/dehydrate';
 import rehydrate from '../reducers/rehydrate';
@@ -11,7 +11,7 @@ class ClientApplication {
             rehydrate
         });
 
-        clientRender(html `<instance of=${Application} />`, document.getElementById('application'), { store });
+        clientRender(jsx `<${Application} />`, document.getElementById('application'), { store });
     }
 }
 

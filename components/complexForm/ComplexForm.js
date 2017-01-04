@@ -1,14 +1,14 @@
-import { Component, html } from 'rerender';
+import { Component, jsx } from 'rerender';
 import Input from '../input/Input';
 import Textarea from '../textarea/Textarea';
 import ComplexFormRow from './ComplexFormRow';
 
 class ComplexForm extends Component {
     render() {
-        return html `
+        return jsx `
             <form onSubmit=${this.handleSubmit}>
-                <instance of=${ComplexFormRow} title="Фамилия">
-                    <instance of=${Input}
+                <${ComplexFormRow} title="Фамилия">
+                    <${Input}
                         name="lastName"
                         dataset=${{
                             validators: {
@@ -18,9 +18,9 @@ class ComplexForm extends Component {
                         }}
                         placeholder="Введите фамилию"
                     />
-                </instance>
-                <instance of=${ComplexFormRow} title="Имя">
-                    <instance of=${Input}
+                </${ComplexFormRow}>
+                <${ComplexFormRow} title="Имя">
+                    <${Input}
                         name="firstName"
                         dataset=${{
                             validators: {
@@ -30,9 +30,9 @@ class ComplexForm extends Component {
                         }}
                         placeholder="Введите Имя"
                     />
-                </instance>
-                <instance of=${ComplexFormRow} title="Дата рождения">
-                    <instance of=${Input}
+                </${ComplexFormRow}>
+                <${ComplexFormRow} title="Дата рождения">
+                    <${Input}
                         name="birthDate"
                         dataset=${{
                             mask: '____/__/__',
@@ -42,18 +42,18 @@ class ComplexForm extends Component {
                         }}
                         placeholder="DD.MM.YYYY"
                     />
-                </instance>
-                <instance of=${ComplexFormRow} title="A little about yourself">
-                    <instance of=${Textarea}
+                </${ComplexFormRow}>
+                <${ComplexFormRow} title="A little about yourself">
+                    <${Textarea}
                         name="about"
                         rows="10"
                         value="Initial text"
                         placeholder="Text here" />
-                </instance>
-                <instance of=${ComplexFormRow} title="Sex" label=${false}>
+                </${ComplexFormRow}>
+                <${ComplexFormRow} title="Sex" label=${false}>
                     <p>
                         <label>
-                            <instance of=${Input}
+                            <${Input}
                                 name="sex"
                                 value="man"
                                 type="radio"
@@ -67,7 +67,7 @@ class ComplexForm extends Component {
                     </p>
                     <p>
                         <label>
-                            <instance of=${Input}
+                            <${Input}
                                 name="sex"
                                 value="woman"
                                 type="radio"
@@ -79,18 +79,18 @@ class ComplexForm extends Component {
                             /> Woman
                         </label>
                     </p>
-                </instance>
-                <instance of=${ComplexFormRow} title="Agreement" label=${false}>
+                </${ComplexFormRow}>
+                <${ComplexFormRow} title="Agreement" label=${false}>
                     <p>
                         <label>
-                            <instance of=${Input}
+                            <${Input}
                                 name="agree"
                                 value="true"
                                 type="checkbox"
                             /> I agree
                         </label>
                     </p>
-                </instance>
+                </${ComplexFormRow}>
             </form>
         `;
     }

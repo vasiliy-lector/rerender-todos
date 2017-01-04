@@ -1,7 +1,7 @@
-import { html } from 'rerender';
+import { jsx } from 'rerender';
 
 function Error404() {
-    return html `<div>404 Error</div>`;
+    return jsx `<div>404 Error</div>`;
 }
 
 export default Error404;

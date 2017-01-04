@@ -1,12 +1,12 @@
-import { html } from 'rerender';
+import { jsx } from 'rerender';
 import Layout from '../components/layout/Layout';
 import TodoList from '../components/todoList/TodoList';
 
 function Todos(){
-    return html `<instance of=${Layout} title="todos">
-        <instance of=${TodoList} buttonText="Add todo" />
+    return jsx `<${Layout} title="todos">
+        <${TodoList} buttonText="Add todo" />
         <a href="/">Go back</a>
-    </instance>`;
+    </${Layout}>`;
 }
 
 Todos.initActions = [].concat(TodoList.initActions);

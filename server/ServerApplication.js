@@ -1,5 +1,5 @@
 import express from 'express';
-import { getHash, Store, serverRender, html } from 'rerender';
+import { getHash, Store, serverRender, jsx } from 'rerender';
 import defaults from 'lodash/defaults';
 import find from 'lodash/find';
 import debug from 'debug';
@@ -72,7 +72,7 @@ class ServerApplication {
     }
 
     getHtml(store = {}) {
-        let application = serverRender(html `<instance of=${Application} />`, { store }),
+        let application = serverRender(jsx `<${Application} />`, { store }),
             hash = getHash(application);
 
         return `<!DOCTYPE html><html>
