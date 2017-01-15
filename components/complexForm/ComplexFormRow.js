@@ -1,6 +1,4 @@
-import { jsx } from 'rerender';
-
-function ComplexFormRow({ title, label }, children) {
+function ComplexFormRow({ props: { title, label }, children, jsx }) {
     return jsx `<div className="complex-form__row">
         <div className="complex-form__row-title">
             ${label ? jsx `<label>${title}</label>` : title}
@@ -10,11 +8,6 @@ function ComplexFormRow({ title, label }, children) {
         </div>
     </div>`;
 }
-
-ComplexFormRow.types = {
-    title: 'string',
-    label: 'boolean'
-};
 
 ComplexFormRow.defaults = {
     label: true

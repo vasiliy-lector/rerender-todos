@@ -1,7 +1,6 @@
-import { jsx } from 'rerender';
 import Button from '../button/Button';
 
-function TodoListItem({ todo: { text, id }, removeTodo }) {
+function TodoListItem({ props: { todo: { text, id }, removeTodo }, jsx }) {
     return jsx `<li className="todo-list__item">
         ${text}
         <${Button}

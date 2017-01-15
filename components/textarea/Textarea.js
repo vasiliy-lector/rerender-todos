@@ -1,4 +1,4 @@
-import { Component, isSameProps, jsx } from 'rerender';
+import { Component, isSameProps } from 'rerender';
 
 class Textarea extends Component {
     componentWillMount() {
@@ -53,7 +53,7 @@ class Textarea extends Component {
         }
     }
 
-    render() {
+    render({ jsx }) {
         const { textAreaProps, value } = this.state;
 
         return jsx `<textarea ${textAreaProps} onInput=${this.handleInput}>${value}</textarea>`;

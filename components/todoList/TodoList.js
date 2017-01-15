@@ -1,4 +1,4 @@
-import { Component, connect, jsx } from 'rerender';
+import { Component, connect } from 'rerender';
 import Input from '../input/Input';
 import Button from '../button/Button';
 import Items from './TodoListItems';
@@ -34,8 +34,8 @@ class TodoList extends Component {
         });
     }
 
-    render() {
-        let { removeTodo, todos } = this.props;
+    render({ props, jsx }) {
+        const { removeTodo, todos } = props;
 
         return jsx `<div className="todo-list">
             <${Items}
@@ -58,13 +58,6 @@ class TodoList extends Component {
     }
 }
 
-TodoList.types = {
-    todos: 'array',
-    addTodo: 'function',
-    removeTodo: 'function'
-};
-
-TodoList.required = ['todos'];
 TodoList.singleton = true;
 
 TodoList.initActions = [getTodos];

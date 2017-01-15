@@ -1,6 +1,4 @@
-import { jsx } from 'rerender';
-
-function Error404() {
+function Error404({ jsx }) {
     return jsx `<div>404 Error</div>`;
 }
 

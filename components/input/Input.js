@@ -1,4 +1,4 @@
-import { Component, jsx } from 'rerender';
+import { Component } from 'rerender';
 
 const
     TYPES_WITH_CHECKED = {
@@ -83,7 +83,7 @@ class Input extends Component {
         this.setState(nextState);
     }
 
-    render() {
+    render({ jsx }) {
         return jsx `<input ${this.state}
             onInput=${this.handleInput}
             onChange=${this.handleChange}

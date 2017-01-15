@@ -1,7 +1,6 @@
-import { jsx } from 'rerender';
 import Item from './TodoListItem';
 
-function TodoListItems({ removeTodo, todos }) {
+function TodoListItems({ props: { removeTodo, todos }, jsx }) {
     return jsx `<ul className="todo-list__list">
         ${todos.map(todo => jsx `<${Item}
             key=${todo.id}
@@ -9,10 +8,5 @@ function TodoListItems({ removeTodo, todos }) {
             todo=${todo} />`)}
     </ul>`;
 }
-
-TodoListItems.types = {
-    removeTodo: 'function',
-    todos: 'array'
-};
 
 export default TodoListItems;

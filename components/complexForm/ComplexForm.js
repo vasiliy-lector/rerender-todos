@@ -1,10 +1,10 @@
-import { Component, jsx } from 'rerender';
+import { Component } from 'rerender';
 import Input from '../input/Input';
 import Textarea from '../textarea/Textarea';
 import ComplexFormRow from './ComplexFormRow';
 
 class ComplexForm extends Component {
-    render() {
+    render({ jsx }) {
         return jsx `
             <form onSubmit=${this.handleSubmit}>
                 <${ComplexFormRow} title="Фамилия">

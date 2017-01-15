@@ -1,8 +1,7 @@
-import { jsx } from 'rerender';
 import Layout from '../components/layout/Layout';
 import ComplexForm from '../components/complexForm/ComplexForm';
 
-function Forms(){
+function Forms({ jsx }){
     return jsx `<${Layout} title="forms">
         <${ComplexForm} />
     </${Layout}>`;
