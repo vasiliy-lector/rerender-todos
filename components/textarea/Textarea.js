@@ -60,6 +60,6 @@ class Textarea extends Component {
     }
 }
 
-Textarea.autoBind = ['handleInput'];
+Textarea.antibind = ['handleInput'];
 
 export default Textarea;

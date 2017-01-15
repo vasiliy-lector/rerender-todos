@@ -62,7 +62,7 @@ TodoList.singleton = true;
 
 TodoList.initActions = [getTodos];
 
-TodoList.autoBind = ['handleSubmit', 'handleInput', 'handleNewTodoRef'];
+TodoList.antibind = ['handleSubmit', 'handleInput', 'handleNewTodoRef'];
 
 const
     get = function({

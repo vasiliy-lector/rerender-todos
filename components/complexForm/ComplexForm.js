@@ -96,7 +96,7 @@ class ComplexForm extends Component {
     }
 }
 
-ComplexForm.autoBind = ['handleSubmit'];
+ComplexForm.antibind = ['handleSubmit'];
 
 ComplexForm.singleton = true;
 

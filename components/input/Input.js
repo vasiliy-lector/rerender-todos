@@ -95,6 +95,6 @@ Input.defaults = {
     type: 'text'
 };
 
-Input.autoBind = ['handleInput', 'handleChange'];
+Input.antibind = ['handleInput', 'handleChange'];
 
 export default Input;

@@ -52,7 +52,7 @@ class Application extends Component {
 }
 
 Application.singleton = true;
-Application.autoBind = ['handlePopState', 'handleClick'];
+Application.antibind = ['handlePopState', 'handleClick'];
 
 const get = ({ routes = {} }) => {
         return {
