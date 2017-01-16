@@ -1,4 +1,4 @@
-import { Component, isSameProps } from 'rerender';
+import { Component, shallowEqual } from 'rerender';
 
 class Textarea extends Component {
     componentWillMount() {
@@ -38,7 +38,7 @@ class Textarea extends Component {
                 return memo;
             }, {});
 
-        if (!isSameProps(textAreaProps, this.props.textAreaProps)) {
+        if (!shallowEqual(textAreaProps, this.props.textAreaProps)) {
             this.setState({
                 textAreaProps
             });
