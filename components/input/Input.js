@@ -8,7 +8,7 @@ const
 
 class Input extends Component {
 
-    componentWillMount() {
+    init() {
         this.setStateByProps();
     }
 

@@ -10,36 +10,18 @@ class ComplexForm extends Component {
                 <${ComplexFormRow} title="Фамилия">
                     <${Input}
                         name="lastName"
-                        dataset=${{
-                            validators: {
-                                required: true,
-                                regexp: /[а-яА-ЯёЁ \-]{1,30}/
-                            }
-                        }}
                         placeholder="Введите фамилию"
                     />
                 </${ComplexFormRow}>
                 <${ComplexFormRow} title="Имя">
                     <${Input}
                         name="firstName"
-                        dataset=${{
-                            validators: {
-                                required: true,
-                                regexp: /[а-яА-ЯёЁ \-]{1,30}/
-                            }
-                        }}
                         placeholder="Введите Имя"
                     />
                 </${ComplexFormRow}>
                 <${ComplexFormRow} title="Дата рождения">
                     <${Input}
                         name="birthDate"
-                        dataset=${{
-                            mask: '____/__/__',
-                            validators: {
-                                required: true
-                            }
-                        }}
                         placeholder="DD.MM.YYYY"
                     />
                 </${ComplexFormRow}>
@@ -57,11 +39,6 @@ class ComplexForm extends Component {
                                 name="sex"
                                 value="man"
                                 type="radio"
-                                dataset=${{
-                                    validators: {
-                                        required: true
-                                    }
-                                }}
                             /> Man
                         </label>
                     </p>
@@ -71,11 +48,6 @@ class ComplexForm extends Component {
                                 name="sex"
                                 value="woman"
                                 type="radio"
-                                dataset=${{
-                                    validators: {
-                                        required: true
-                                    }
-                                }}
                             /> Woman
                         </label>
                     </p>

@@ -1,7 +1,7 @@
 import { Component, shallowEqual } from 'rerender';
 
 class Textarea extends Component {
-    componentWillMount() {
+    init() {
         this.setStateByProps();
     }
 

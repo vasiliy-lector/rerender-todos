@@ -11,7 +11,7 @@ class ClientApplication {
             rehydrate
         });
 
-        renderClient(({ jsx }) => jsx `<${Application} />`, store, document.getElementById('application'));
+        renderClient(Application, store, document.getElementById('application'), {});
     }
 }
 

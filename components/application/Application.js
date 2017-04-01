@@ -51,7 +51,7 @@ class Application extends Component {
     }
 }
 
-Application.singleton = true;
+Application.uniqid = 'app';
 Application.antibind = ['handlePopState', 'handleClick'];
 
 const get = ({ routes = {} }) => {

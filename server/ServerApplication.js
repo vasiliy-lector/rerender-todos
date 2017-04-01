@@ -1,5 +1,5 @@
 import express from 'express';
-import { getHash, Store, renderServer } from 'rerender';
+import { Store, renderServer } from 'rerender';
 import defaults from 'lodash/defaults';
 import find from 'lodash/find';
 import debug from 'debug';
@@ -72,8 +72,8 @@ class ServerApplication {
     }
 
     getHtml(store = {}) {
-        let application = renderServer(({ jsx }) => jsx `<${Application} />`, store),
-            hash = getHash(application);
+        logInfo('began render');
+        const application = renderServer(({ jsx }) => jsx `<${Application} />`, store);
 
         return `<!DOCTYPE html><html>
             <head>
@@ -81,7 +81,7 @@ class ServerApplication {
                 ${this.getCss()}
             </head>
             <body>
-                <div id="application" data-hash="${hash}">${application}</div>
+                <div id="application">${application}</div>
                 ${this.getScripts(store)}
             </body>
         </html>`;
