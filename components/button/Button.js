@@ -1,4 +1,6 @@
-function Button({ props, children, jsx }) {
+import { jsx } from 'rerender';
+
+function Button(props, children) {
     return jsx `<button ${props}>
         ${children}
     </button>`;

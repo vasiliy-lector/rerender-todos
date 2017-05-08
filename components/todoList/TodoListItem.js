@@ -1,4 +1,4 @@
-import { Component } from 'rerender';
+import { Component, jsx } from 'rerender';
 import Button from '../button/Button';
 
 class TodoListItem extends Component {
@@ -6,7 +6,13 @@ class TodoListItem extends Component {
         this.props.removeTodo(this.props.todo.id);
     }
 
-    render({ props: { todo: { text } }, jsx }) {
+    render() {
+        const {
+            todo: {
+                text
+            }
+        } = this.props;
+
         return jsx `<li className="todo-list__item">
             ${text}
             <${Button}

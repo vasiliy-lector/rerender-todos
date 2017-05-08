@@ -1,4 +1,4 @@
-import { Component, connect } from 'rerender';
+import { Component, connect, jsx } from 'rerender';
 import Input from '../input/Input';
 import Button from '../button/Button';
 import Items from './TodoListItems';
@@ -34,8 +34,8 @@ class TodoList extends Component {
         });
     }
 
-    render({ props, jsx }) {
-        const { removeTodo, todos } = props;
+    render() {
+        const { removeTodo, todos, buttonText } = this.props;
 
         return jsx `<div className="todo-list">
             <${Items}
@@ -49,7 +49,7 @@ class TodoList extends Component {
                         autocomplete="off"
                         onInput=${this.handleInput}
                         placeholder="New todo" />
-                    <${Button}>${this.props.buttonText}</${Input}>
+                    <${Button}>${buttonText}</${Input}>
                 </form>
             </div>
             Вы ввели текст: "${this.state.newTodoValue}"

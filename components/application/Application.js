@@ -1,4 +1,4 @@
-import { Component, connect } from 'rerender';
+import { Component, connect, jsx } from 'rerender';
 import navigateUrl from '../../actions/navigateUrl';
 import changeRoute from '../../reducers/routes/changeRoute';
 import routes from '../../configs/routes';
@@ -42,8 +42,8 @@ class Application extends Component {
         }
     }
 
-    render({ props, jsx }) {
-        let PageComponent = pages[props.route];
+    render() {
+        let PageComponent = pages[this.props.route];
 
         return jsx `<div onClick=${this.handleClick}>
             <${PageComponent} />

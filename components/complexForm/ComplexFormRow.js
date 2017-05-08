@@ -1,4 +1,6 @@
-function ComplexFormRow({ props: { title, label }, children, jsx }) {
+import { jsx } from 'rerender';
+
+function ComplexFormRow({ title, label }, children) {
     return jsx `<div className="complex-form__row">
         <div className="complex-form__row-title">
             ${label ? jsx `<label>${title}</label>` : title}

@@ -1,4 +1,4 @@
-import { Component, shallowEqual } from 'rerender';
+import { Component, shallowEqual, jsx } from 'rerender';
 
 class Textarea extends Component {
     init() {
@@ -53,7 +53,7 @@ class Textarea extends Component {
         }
     }
 
-    render({ jsx }) {
+    render() {
         const { textAreaProps, value } = this.state;
 
         return jsx `<textarea ${textAreaProps} onInput=${this.handleInput}>${value}</textarea>`;

@@ -1,5 +1,5 @@
 import express from 'express';
-import { Store, renderServer } from 'rerender';
+import { Store, renderServer, jsx } from 'rerender';
 import defaults from 'lodash/defaults';
 import find from 'lodash/find';
 import debug from 'debug';
@@ -73,7 +73,7 @@ class ServerApplication {
 
     getHtml(store = {}) {
         logInfo('began render');
-        const application = renderServer(({ jsx }) => jsx `<${Application} />`, store);
+        const application = renderServer(jsx `<${Application} />`, store);
 
         return `<!DOCTYPE html><html>
             <head>

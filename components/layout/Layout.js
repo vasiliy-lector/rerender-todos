@@ -1,4 +1,6 @@
-function Layout({ props: { title }, children, jsx }){
+import { jsx } from 'rerender';
+
+function Layout({ title }, children){
     return jsx `<div className="layout">
         <div className="layout__container">
             <div className="layout__header">
