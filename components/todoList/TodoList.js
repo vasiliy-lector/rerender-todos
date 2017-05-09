@@ -58,8 +58,6 @@ class TodoList extends Component {
     }
 }
 
-TodoList.singleton = true;
-
 TodoList.initActions = [getTodos];
 
 TodoList.antibind = ['handleSubmit', 'handleInput', 'handleNewTodoRef'];
