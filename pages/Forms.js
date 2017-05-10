@@ -4,7 +4,7 @@ import ComplexForm from '../components/complexForm/ComplexForm';
 
 function Forms(){
     return jsx `<${Layout} title="forms">
-        <${ComplexForm} />
+        <${ComplexForm} uniqid="myform" />
     </${Layout}>`;
 }
 

@@ -11,11 +11,11 @@ class Application extends Component {
             route: this.props.route
         }, '');
 
-        // setInterval(() => {
-        //     let { route } = this.props;
-        //
-        //     this.props.navigateUrl(route === 'Index' ? '/forms/' : '/');
-        // }, 2000);
+        setInterval(() => {
+            let { route } = this.props;
+
+            this.props.navigateUrl(route === 'Index' ? '/forms/' : '/');
+        }, 2000);
     }
 
     handlePopState(event) {
@@ -51,7 +51,6 @@ class Application extends Component {
     }
 }
 
-Application.uniqid = 'app';
 Application.antibind = ['handlePopState', 'handleClick'];
 
 const get = ({ routes = {} }) => {

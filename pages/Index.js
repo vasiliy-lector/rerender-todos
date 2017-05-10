@@ -8,7 +8,7 @@ function Index(){
         <p><a href="/second/">Go empty page</a></p>
         <p><a href="/forms/">Forms</a></p>
         <p><a href="/no-exist/">Bad link</a></p>
-        <${ComplexForm} />
+        <${ComplexForm} uniqid="myform" />
     </${Layout}>`;
 }
 
