@@ -11,11 +11,11 @@ class Application extends Component {
             route: this.props.route
         }, '');
 
-        setInterval(() => {
-            let { route } = this.props;
-
-            this.props.navigateUrl(route === 'Index' ? '/forms/' : '/');
-        }, 2000);
+        // setInterval(() => {
+        //     let { route } = this.props;
+        //
+        //     this.props.navigateUrl(route === 'Index' ? '/forms/' : '/');
+        // }, 2000);
     }
 
     handlePopState(event) {
@@ -45,7 +45,7 @@ class Application extends Component {
     render() {
         let PageComponent = pages[this.props.route];
 
-        return jsx `<div onClick=${this.handleClick}>
+        return jsx `<div onclick=${this.handleClick}>
             <${PageComponent} />
         </div>`;
     }

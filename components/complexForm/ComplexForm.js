@@ -6,7 +6,7 @@ import ComplexFormRow from './ComplexFormRow';
 class ComplexForm extends Component {
     render() {
         return jsx `
-            <form onSubmit=${this.handleSubmit}>
+            <form onsubmit=${this.handleSubmit}>
                 <${ComplexFormRow} title="Фамилия">
                     <${Input}
                         name="lastName"

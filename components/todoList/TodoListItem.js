@@ -17,7 +17,7 @@ class TodoListItem extends Component {
             ${text}
             <${Button}
                 className="todo-list__remove"
-                onClick=${this.handleRemove}>Удалить</${Button}>
+                onclick=${this.handleRemove}>Удалить</${Button}>
         </li>`;
     }
 }

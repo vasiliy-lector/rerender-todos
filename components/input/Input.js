@@ -57,7 +57,7 @@ class Input extends Component {
             value
         });
 
-        this.props.onInput && this.props.onInput(event);
+        this.props.oninput && this.props.oninput(event);
     }
 
     setStateByProps(props = this.props) {
@@ -85,7 +85,7 @@ class Input extends Component {
 
     render() {
         return jsx `<input ${this.state}
-            onInput=${this.handleInput}
+            oninput=${this.handleInput}
             onChange=${this.handleChange}
         />`;
     }

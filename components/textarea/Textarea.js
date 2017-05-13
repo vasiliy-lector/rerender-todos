@@ -18,7 +18,7 @@ class Textarea extends Component {
             value
         });
 
-        this.props.onInput && this.props.onInput(event);
+        this.props.oninput && this.props.oninput(event);
     }
 
     reset() {
@@ -56,7 +56,7 @@ class Textarea extends Component {
     render() {
         const { textAreaProps, value } = this.state;
 
-        return jsx `<textarea ${textAreaProps} onInput=${this.handleInput}>${value}</textarea>`;
+        return jsx `<textarea ${textAreaProps} oninput=${this.handleInput}>${value}</textarea>`;
     }
 }
 

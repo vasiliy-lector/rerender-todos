@@ -42,12 +42,12 @@ class TodoList extends Component {
                 todos=${todos}
                 removeTodo=${removeTodo} />
             <div className="todo-list__add">
-                <form onSubmit=${this.handleSubmit}>
+                <form onsubmit=${this.handleSubmit}>
                     <${Input}
                         ref=${this.handleNewTodoRef}
                         name="text"
                         autocomplete="off"
-                        onInput=${this.handleInput}
+                        oninput=${this.handleInput}
                         placeholder="New todo" />
                     <${Button}>${buttonText}</${Input}>
                 </form>
