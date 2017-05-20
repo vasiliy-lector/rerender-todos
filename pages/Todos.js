@@ -9,6 +9,4 @@ function Todos(){
     </${Layout}>`;
 }
 
-Todos.initActions = [].concat(TodoList.initActions);
-
 export default Todos;

@@ -1,6 +1,4 @@
 import { Component, connect, jsx } from 'rerender';
-import Input from '../input/Input';
-import Button from '../button/Button';
 import Items from './TodoListItems';
 import getTodos from '../../actions/getTodos';
 import addTodo from '../../actions/addTodo';
@@ -43,13 +41,14 @@ class TodoList extends Component {
                 removeTodo=${removeTodo} />
             <div className="todo-list__add">
                 <form onsubmit=${this.handleSubmit}>
-                    <${Input}
+                    <input
                         ref=${this.handleNewTodoRef}
+                        value=""
                         name="text"
                         autocomplete="off"
                         oninput=${this.handleInput}
                         placeholder="New todo" />
-                    <${Button}>${buttonText}</${Input}>
+                    <button>${buttonText}</button>
                 </form>
             </div>
             Вы ввели текст: "${this.state.newTodoValue}"

@@ -1,5 +1,5 @@
 import express from 'express';
-import { Store, renderServer, jsx } from 'rerender';
+import { Store, Dispatcher, renderServer, jsx } from 'rerender';
 import defaults from 'lodash/defaults';
 import find from 'lodash/find';
 import debug from 'debug';
@@ -7,9 +7,8 @@ import routes from '../configs/routes';
 import staticConfig from '../configs/static';
 import env from '../configs/env';
 import Application from '../components/application/Application';
-import * as pages from '../pages/pages';
-import dehydrate from '../reducers/dehydrate';
-import rehydrate from '../reducers/rehydrate';
+import GET_ROUTES from '../events/GET_ROUTES';
+import CHANGE_ROUTE from '../events/CHANGE_ROUTE';
 
 defaults(process.env, env);
 debug.enable(process.env.DEBUG);
@@ -39,24 +38,21 @@ class ServerApplication {
         logInfo('Request path', request.path);
 
         try {
-            var route = this.getRoute(request.path) || ERROR_404,
-                { initActions = [] } = pages[route],
-                store = new Store({
-                    state: Object.assign({}, { routes: { route } }),
-                    dehydrate,
-                    rehydrate
-                });
+            const store = new Store();
+            const dispatcher = new Dispatcher({ store });
+            const route = this.getRoute(request.path) || ERROR_404;
+            dispatcher.setServer();
 
-            logInfo('route', route);
+            dispatcher.dispatch(GET_ROUTES)
+                .then(CHANGE_ROUTE, this.getRoute(request.path))
+                .then(() => {
+                    logInfo('route', route);
 
-            if (route === ERROR_404) {
-                response.status(404);
-            }
+                    if (route === ERROR_404) {
+                        response.status(404);
+                    }
 
-            Promise.all(initActions.map(action => action({ store })()))
-                .then(() => response.send(this.getHtml(store)))
-                .catch(error => {
-                    this.send500({ error, response });
+                    response.send(this.getHtml(store, dispatcher));
                 });
 
         } catch (error) {
@@ -71,20 +67,16 @@ class ServerApplication {
             <p>${process.env.NODE_ENV === 'development' ? error + '' : 'Internal server error'}</p>`);
     }
 
-    getHtml(store = {}) {
+    getHtml(store, dispatcher) {
         logInfo('began render');
-        const application = renderServer(jsx `<${Application} />`, store);
 
-        return `<!DOCTYPE html><html>
-            <head>
-                <title>${this.getTitle()}</title>
-                ${this.getCss()}
-            </head>
-            <body>
-                <div id="application">${application}</div>
-                ${this.getScripts(store)}
-            </body>
-        </html>`;
+        return renderServer(jsx `<${Application} />`, {
+            store,
+            dispatcher,
+            title: this.getTitle(),
+            head: this.getCss(),
+            bodyEnd: this.getScripts()
+        });
     }
 
     getTitle() {
@@ -97,13 +89,11 @@ class ServerApplication {
         });
     }
 
-    getScripts(store) {
+    getScripts() {
         let scripts = [
             // '/node_modules/less/dist/less.js',
             '/dist/ClientApplication.js'
         ].map(path => `<script src="${staticRoot}${path}"></script>`);
-
-        scripts.unshift(`<script>window.__STATE__ = ${JSON.stringify(store.dehydrate())};</script>`);
 
         return scripts.join('');
     }

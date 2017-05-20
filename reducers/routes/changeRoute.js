@@ -1,13 +1,12 @@
-import { createReducer } from 'rerender';
-
-const changeRoute = createReducer(({ payload: route, state, setState }) => {
-    let {
+export default function changeRoute({ setState, getState }, route) {
+    const {
         routes
-    } = state;
+    } = getState();
+
+    const nextRoutes = Object.assign({}, routes);
+    nextRoutes.route = route;
 
     setState({
-        routes: Object.assign({}, routes, { route })
+        routes: nextRoutes
     });
-});
-
-export default changeRoute;
+}
