@@ -1,8 +1,7 @@
 import { Component, connect, jsx } from 'rerender';
 import Items from './TodoListItems';
-import getTodos from '../../actions/getTodos';
-import addTodo from '../../actions/addTodo';
-import removeTodo from '../../actions/removeTodo';
+import GET_TODOS from '../../events/GET_TODOS';
+import ADD_TODO from '../../events/ADD_TODO';
 
 class TodoList extends Component {
     init() {
@@ -14,21 +13,19 @@ class TodoList extends Component {
     }
 
     handleSubmit(event) {
-        this.props.addTodo({
+        this.dispatch(ADD_TODO, {
             text: this.state.newTodoValue
         });
 
-        this.setState({
-            newTodoValue: ''
-        });
+        this.setState({ newTodoValue: '' });
 
         this.newTodoInput.reset();
         event.preventDefault();
     }
 
-    handleInput(event) {
+    handleInput() {
         this.setState({
-            newTodoValue: event.target.value
+            newTodoValue: this.newTodoInput.get('value')
         });
     }
 
@@ -51,30 +48,19 @@ class TodoList extends Component {
                     <button>${buttonText}</button>
                 </form>
             </div>
-            Вы ввели текст: "${this.state.newTodoValue}"
+            Text from input: "${this.state.newTodoValue}"
             ${this.children}
         </div>`;
     }
 }
 
-TodoList.initActions = [getTodos];
-
 TodoList.antibind = ['handleSubmit', 'handleInput', 'handleNewTodoRef'];
 
-const
-    get = function({
-        todos: {
-            list: todos
-        }
-    }) {
-        return {
-            todos
-        };
-    },
-    actions = {
-        addTodo,
-        removeTodo
-    },
-    watch = 'todos';
+const init = dispatch => dispatch(GET_TODOS);
+const select = ({
+    todos: {
+        list: todos
+    }
+}) => ({ todos });
 
-export default connect({ watch, get, actions })(TodoList);
+export default connect({ init, select })(TodoList);

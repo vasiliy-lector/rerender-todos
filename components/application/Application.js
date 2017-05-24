@@ -1,10 +1,13 @@
 import { Component, connect, jsx } from 'rerender';
-import navigateUrl from '../../actions/navigateUrl';
-import changeRoute from '../../reducers/routes/changeRoute';
-import routes from '../../configs/routes';
 import * as pages from '../../pages/pages';
+import SET_ROUTE from '../../events/SET_ROUTE';
+import NAVIGATE_TO_URL from '../../events/NAVIGATE_TO_URL';
 
 class Application extends Component {
+    init() {
+        this.on('link:clicked', this.handleClick);
+    }
+
     componentDidMount() {
         window.onpopstate = this.handlePopState;
         history.replaceState({
@@ -14,54 +17,39 @@ class Application extends Component {
         // setInterval(() => {
         //     let { route } = this.props;
         //
-        //     this.props.navigateUrl(route === 'Index' ? '/forms/' : '/');
+        //     this.dispatch(NAVIGATE_TO_URL, route === 'Index' ? '/forms/' : '/');
         // }, 2000);
     }
 
     handlePopState(event) {
-        this.props.changeRoute(event.state.route);
+        this.dispatch(SET_ROUTE, event.state.route);
     }
 
-    handleClick(event) {
-        let currentNode = event.target;
+    handleClick(event, domEvent, url) {
+        const external = /s^(\w*:)?\/\//.test(url);
 
-        while(currentNode) {
-            if (currentNode.tagName === 'A') {
-                let url = currentNode.pathname,
-                    external = currentNode.host !== location.host;
-
-                if (url && (routes[url] || !external)) {
-                    event.preventDefault();
-                    this.props.navigateUrl(url);
-                }
-
-                break;
-            } else {
-                currentNode = currentNode.parentNode;
-            }
+        if (url && !external) {
+            domEvent.preventDefault();
+            this.dispatch(NAVIGATE_TO_URL, url);
         }
     }
 
     render() {
-        let PageComponent = pages[this.props.route];
+        const PageComponent = pages[this.props.route.page];
 
-        return jsx `<div onclick=${this.handleClick}>
-            <${PageComponent} />
-        </div>`;
+        return jsx `<${PageComponent} />`;
     }
 }
 
 Application.antibind = ['handlePopState', 'handleClick'];
 
-const get = ({ routes = {} }) => {
-        return {
-            route: routes.route
-        };
-    },
-    watch = 'routes',
-    actions = {
-        navigateUrl,
-        changeRoute
-    };
+const select = ({ routes: { route } }) => ({ route });
+const init = function() {
+    this.dispatch(SET_ROUTE, this.props.initialRoute);
+};
 
-export default connect({ actions, watch, get })(Application);
+export default connect({
+    init,
+    select,
+    merge: false
+})(Application);

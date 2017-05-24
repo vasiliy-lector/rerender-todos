@@ -1,18 +1,13 @@
-import { createAction } from 'rerender';
 import routes from '../configs/routes';
-import changeRoute from '../reducers/routes/changeRoute';
+import SET_ROUTE from '../events/SET_ROUTE';
 
-const navigateUrl = createAction(({ payload: url, actions, resolve, store }) => {
-    var nextRoute = routes[url] || 'Error404';
+export default function navigateUrl({ getState, dispatch }, url) {
+    var nextRoute = routes[url] || routes['/404'];
 
-    if (nextRoute !== store.state.routes.route) {
-        actions.changeRoute(nextRoute);
+    if (nextRoute !== getState().routes.route) {
+        dispatch(SET_ROUTE, nextRoute);
         history.pushState({
             route: nextRoute
         }, '', url);
     }
-
-    resolve();
-}, { changeRoute });
-
-export default navigateUrl;
+}
