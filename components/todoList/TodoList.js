@@ -8,7 +8,7 @@ import REMOVE_TODO from '../../events/todos/REMOVE_TODO';
 class TodoList extends Component {
     init() {
         this.state.newTodoValue = '';
-        this.bindRemove = memoize(this.bindRemove);
+        this.bindRemove = memoize(id => this.handleRemove.bind(this, id));
     }
 
     handleNewTodoRef(ref) {
@@ -34,10 +34,6 @@ class TodoList extends Component {
 
     handleRemove(id) {
         this.dispatch(REMOVE_TODO, id);
-    }
-
-    bindRemove(id) {
-        return this.handleRemove.bind(this, id);
     }
 
     render() {
