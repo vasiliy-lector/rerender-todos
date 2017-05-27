@@ -13,9 +13,9 @@ class TodoList extends Component {
     }
 
     handleSubmit(event) {
-        this.dispatch(ADD_TODO, [{
+        this.dispatch(ADD_TODO, {
             text: this.state.newTodoValue
-        }]);
+        });
 
         this.setState({ newTodoValue: '' });
 

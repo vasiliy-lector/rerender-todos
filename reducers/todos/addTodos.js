@@ -1,7 +1,7 @@
-export default function addTodo({ setState, getState }, newTodo) {
+export default function addTodos({ setState, getState }, newTodos) {
     const nextTodos = [
         ...getState(['todos', 'list']),
-        newTodo
+        ...newTodos
     ];
 
     setState(nextTodos, ['todos', 'list']);
