@@ -1,23 +1,5 @@
-import { createReducer } from 'rerender';
-import { buildStateByList } from './rehydrate';
+export default function removeTodo({ getState, setState }, id) {
+    const nextTodos = getState(['todos', 'list']).filter(todo => todo.id !== id);
 
-const removeTodo = createReducer(({ payload: id, state, setState }) => {
-    let {
-            todos: {
-                list
-            }
-        } = state;
-
-    setState({
-        todos: buildStateByList(list.reduce((memo, item) => {
-            if (item.id !== id) {
-                memo.push(item);
-            }
-
-            return memo;
-        }, []))
-    });
-
-});
-
-export default removeTodo;
+    setState(nextTodos, ['todos', 'list']);
+}

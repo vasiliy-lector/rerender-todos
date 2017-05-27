@@ -1,7 +1,8 @@
 import { Component, connect, jsx } from 'rerender';
 import * as pages from '../../pages/pages';
-import SET_ROUTE from '../../events/SET_ROUTE';
-import NAVIGATE_TO_URL from '../../events/NAVIGATE_TO_URL';
+import SET_ROUTE from '../../events/routes/SET_ROUTE';
+import NAVIGATE_TO_URL from '../../events/routes/NAVIGATE_TO_URL';
+import REHYDRATE from '../../events/REHYDRATE';
 
 class Application extends Component {
     init() {
@@ -12,7 +13,7 @@ class Application extends Component {
         window.onpopstate = this.handlePopState;
         history.replaceState({
             route: this.props.route
-        }, '');
+        }, this.props.route.title);
 
         // setInterval(() => {
         //     let { route } = this.props;
@@ -48,8 +49,11 @@ const init = function() {
     this.dispatch(SET_ROUTE, this.props.initialRoute);
 };
 
-export default connect({
-    init,
-    select,
-    merge: false
-})(Application);
+Application.controller = [
+    connect({
+        init,
+        select
+    })
+];
+
+export default Application;

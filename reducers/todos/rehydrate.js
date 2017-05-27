@@ -1,20 +1,7 @@
-const buildStateByList = function(list) {
-    let byId = list.reduce((memo, item) => {
-        memo[item.id] = item;
+import { pathOr } from 'ramda';
 
-        return memo;
-    }, {});
+export default function rehydrate({ setState }, state) {
+    const nextList = pathOr([], ['todos', 'list'], state);
 
-    return {
-        list,
-        byId
-    };
-};
-
-export default function rehydrate(todos = {}) {
-    let { list = [] } = todos;
-
-    return buildStateByList(list);
+    setState(nextList, ['todos', 'list']);
 }
-
-export { buildStateByList };

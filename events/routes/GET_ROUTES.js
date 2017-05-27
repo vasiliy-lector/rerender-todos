@@ -1,5 +1,5 @@
-import getRoutes from '../actions/getRoutes';
-import setRoutes from '../reducers/routes/setRoutes';
+import getRoutes from '../../actions/routes/getRoutes';
+import setRoutes from '../../reducers/routes/setRoutes';
 
 export default {
     name: 'GET_ROUTES',

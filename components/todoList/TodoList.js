@@ -1,7 +1,7 @@
 import { Component, connect, jsx } from 'rerender';
-import Items from './TodoListItems';
-import GET_TODOS from '../../events/GET_TODOS';
-import ADD_TODO from '../../events/ADD_TODO';
+import TodoListItems from './TodoListItems';
+import GET_TODOS from '../../events/todos/GET_TODOS';
+import ADD_TODOS from '../../events/todos/ADD_TODOS';
 
 class TodoList extends Component {
     init() {
@@ -13,7 +13,7 @@ class TodoList extends Component {
     }
 
     handleSubmit(event) {
-        this.dispatch(ADD_TODO, {
+        this.dispatch(ADD_TODOS, {
             text: this.state.newTodoValue
         });
 
@@ -30,12 +30,10 @@ class TodoList extends Component {
     }
 
     render() {
-        const { removeTodo, todos, buttonText } = this.props;
+        const { todos, buttonText } = this.props;
 
         return jsx `<div className="todo-list">
-            <${Items}
-                todos=${todos}
-                removeTodo=${removeTodo} />
+            <${TodoListItems} todos=${todos} />
             <div className="todo-list__add">
                 <form onsubmit=${this.handleSubmit}>
                     <input

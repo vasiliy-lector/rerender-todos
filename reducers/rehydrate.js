@@ -1,13 +1,13 @@
-import rehydrateTodos from './todos/rehydrate';
+import todos from './todos/rehydrate';
+import routes from './routes/rehydrate';
 
-export default function rehydrate(state) {
-    let { todos } = state;
+const reducers = [
+    todos,
+    routes
+];
 
-    return Object.assign(
-        {},
-        state,
-        {
-            todos: rehydrateTodos(todos)
-        }
-    );
+export default function rehydrate(methods, dehydrated = {}) {
+    for (let i = 0, l = reducers.length; i < l; i++) {
+        reducers[i](methods, dehydrated);
+    }
 }

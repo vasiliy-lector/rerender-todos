@@ -7,7 +7,7 @@ export default class A extends Component {
     }
 
     handleClick(event) {
-        this.emit('link:clicked', event, this.ref.get('href'));
+        this.emit('a:clicked', event, this.ref.get('href'));
     }
 
     render() {
