@@ -1,11 +1,14 @@
+import { memoize } from 'ramda';
 import { Component, connect, jsx } from 'rerender';
 import TodoListItem from './TodoListItem';
 import GET_TODOS from '../../events/todos/GET_TODOS';
 import ADD_TODO from '../../events/todos/ADD_TODO';
+import REMOVE_TODO from '../../events/todos/REMOVE_TODO';
 
 class TodoList extends Component {
     init() {
         this.state.newTodoValue = '';
+        this.bindRemove = memoize(this.bindRemove);
     }
 
     handleNewTodoRef(ref) {
@@ -29,12 +32,21 @@ class TodoList extends Component {
         });
     }
 
+    handleRemove(id) {
+        this.dispatch(REMOVE_TODO, id);
+    }
+
+    bindRemove(id) {
+        return this.handleRemove.bind(this, id);
+    }
+
     render() {
         const { todos, buttonText } = this.props;
         const items = jsx `<ul className="todo-list__list">
             ${todos.map(todo => jsx `<${TodoListItem}
                 key=${todo.id}
                 todo=${todo}
+                removeTodo=${this.bindRemove(todo.id)}
             />`)}
         </ul>`;
 
