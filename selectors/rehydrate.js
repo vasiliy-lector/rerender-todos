@@ -1,9 +1,7 @@
 import todos from './todos/rehydrate';
-import routes from './routes/rehydrate';
 
 const selectors = [
-    todos,
-    routes
+    todos
 ];
 
 export default function rehydrate(state) {
