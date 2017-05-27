@@ -1,5 +1,5 @@
 import { Component, connect, jsx } from 'rerender';
-import TodoListItems from './TodoListItems';
+import TodoListItem from './TodoListItem';
 import GET_TODOS from '../../events/todos/GET_TODOS';
 import ADD_TODO from '../../events/todos/ADD_TODO';
 
@@ -31,9 +31,15 @@ class TodoList extends Component {
 
     render() {
         const { todos, buttonText } = this.props;
+        const items = jsx `<ul className="todo-list__list">
+            ${todos.map(todo => jsx `<${TodoListItem}
+                key=${todo.id}
+                todo=${todo}
+            />`)}
+        </ul>`;
 
         return jsx `<div className="todo-list">
-            <${TodoListItems} todos=${todos} />
+            ${items}
             <div className="todo-list__add">
                 <form onsubmit=${this.handleSubmit}>
                     <input
