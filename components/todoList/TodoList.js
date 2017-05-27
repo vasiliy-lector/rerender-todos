@@ -1,7 +1,7 @@
 import { Component, connect, jsx } from 'rerender';
 import TodoListItems from './TodoListItems';
 import GET_TODOS from '../../events/todos/GET_TODOS';
-import ADD_TODOS from '../../events/todos/ADD_TODOS';
+import ADD_TODO from '../../events/todos/ADD_TODO';
 
 class TodoList extends Component {
     init() {
@@ -13,9 +13,9 @@ class TodoList extends Component {
     }
 
     handleSubmit(event) {
-        this.dispatch(ADD_TODOS, {
+        this.dispatch(ADD_TODO, [{
             text: this.state.newTodoValue
-        });
+        }]);
 
         this.setState({ newTodoValue: '' });
 

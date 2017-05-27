@@ -1,12 +1,12 @@
-import routes from '../configs/routes';
-import SET_ROUTE from '../events/SET_ROUTE';
+import routes from '../../configs/routes';
+import SET_ROUTE from '../../events/routes/SET_ROUTE';
 
-export default function navigateUrl({ getState, dispatch }, url) {
+export default function navigateToUrl({ getState, dispatch, win = self }, url) {
     var nextRoute = routes[url] || routes['/404'];
 
     if (nextRoute !== getState(['routes', 'route'])) {
         dispatch(SET_ROUTE, nextRoute);
-        history.pushState({
+        win.history.pushState({
             route: nextRoute
         }, nextRoute.title, url);
     }

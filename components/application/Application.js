@@ -1,8 +1,7 @@
 import { Component, connect, jsx } from 'rerender';
-import * as pages from '../../pages/pages';
 import SET_ROUTE from '../../events/routes/SET_ROUTE';
 import NAVIGATE_TO_URL from '../../events/routes/NAVIGATE_TO_URL';
-import REHYDRATE from '../../events/REHYDRATE';
+import PageLoader from '../pageLoader/PageLoader';
 
 class Application extends Component {
     init() {
@@ -10,8 +9,9 @@ class Application extends Component {
     }
 
     componentDidMount() {
+        const { window = self } = this.props;
         window.onpopstate = this.handlePopState;
-        history.replaceState({
+        window.history.replaceState({
             route: this.props.route
         }, this.props.route.title);
 
@@ -36,9 +36,7 @@ class Application extends Component {
     }
 
     render() {
-        const PageComponent = pages[this.props.route.page];
-
-        return jsx `<${PageComponent} />`;
+        return jsx `<${PageLoader} page=${this.props.route.page} />`;
     }
 }
 
@@ -49,11 +47,8 @@ const init = function() {
     this.dispatch(SET_ROUTE, this.props.initialRoute);
 };
 
-Application.controller = [
-    connect({
-        init,
-        select
-    })
-];
-
-export default Application;
+export default connect({
+    init,
+    select,
+    merge: false
+})(Application);
