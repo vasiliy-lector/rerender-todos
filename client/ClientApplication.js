@@ -1,7 +1,7 @@
 import { Store, renderClient, jsx } from 'rerender';
 import Application from '../components/application/Application.js';
-import dehydrate from '../reducers/dehydrate';
-import rehydrate from '../reducers/rehydrate';
+import dehydrate from '../selectors/dehydrate';
+import rehydrate from '../selectors/rehydrate';
 
 class ClientApplication {
     constructor(state) {
@@ -11,7 +11,7 @@ class ClientApplication {
             rehydrate
         });
 
-        renderClient(jsx `<${Application} />`, store, document.getElementById('application'), {});
+        renderClient(jsx `<${Application} />`, { store });
     }
 }
 

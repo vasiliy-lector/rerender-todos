@@ -1,11 +1,12 @@
 import express from 'express';
-import { renderServer, jsx } from 'rerender';
+import { renderServer, jsx, Store } from 'rerender';
 import defaults from 'lodash/defaults';
 import find from 'lodash/find';
 import debug from 'debug';
 import routes from '../configs/routes';
 import staticConfig from '../configs/static';
 import env from '../configs/env';
+import rehydrate from '../selectors/rehydrate';
 import Application from '../components/application/Application';
 
 defaults(process.env, env);
@@ -34,10 +35,12 @@ class ServerApplication {
 
             if (route.method === 'post') {
                 server.post(path, this.requestHandler);
+            } else {
+                server.get(path, this.requestHandler);
             }
         }
 
-        server.get(this.requestHandler);
+        // server.get(this.requestHandler);
 
         server.listen(process.env.PORT);
         logInfo('Server listen port', process.env.PORT);
@@ -55,14 +58,17 @@ class ServerApplication {
         logInfo('Request path', path);
 
         let route = routes[path];
-        logInfo('route', route.page);
+        logInfo('route', route);
 
         if (!route) {
             response.status(404);
             route = routes['/404'];
         }
 
+        const store = new Store({ rehydrate });
+
         response.send(renderServer(jsx `<${Application} initialRoute=${route}/>`, {
+            store,
             title: route.title,
             head: this.getCss(),
             bodyEnd: this.getScripts()

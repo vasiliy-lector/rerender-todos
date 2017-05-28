@@ -1,6 +1,4 @@
 import { Component, jsx } from 'rerender';
-import Input from '../input/Input';
-import Textarea from '../textarea/Textarea';
 import ComplexFormRow from './ComplexFormRow';
 
 class ComplexForm extends Component {
@@ -8,25 +6,25 @@ class ComplexForm extends Component {
         return jsx `
             <form onsubmit=${this.handleSubmit}>
                 <${ComplexFormRow} title="Фамилия">
-                    <${Input}
+                    <input
                         name="lastName"
                         placeholder="Введите фамилию"
                     />
                 </${ComplexFormRow}>
                 <${ComplexFormRow} title="Имя">
-                    <${Input}
+                    <input
                         name="firstName"
                         placeholder="Введите Имя"
                     />
                 </${ComplexFormRow}>
                 <${ComplexFormRow} title="Дата рождения">
-                    <${Input}
+                    <input
                         name="birthDate"
                         placeholder="DD.MM.YYYY"
                     />
                 </${ComplexFormRow}>
                 <${ComplexFormRow} title="A little about yourself">
-                    <${Textarea}
+                    <textarea
                         name="about"
                         rows="10"
                         value="Initial text"
@@ -35,7 +33,7 @@ class ComplexForm extends Component {
                 <${ComplexFormRow} title="Sex" label=${false}>
                     <p>
                         <label>
-                            <${Input}
+                            <input
                                 name="sex"
                                 value="man"
                                 type="radio"
@@ -44,7 +42,7 @@ class ComplexForm extends Component {
                     </p>
                     <p>
                         <label>
-                            <${Input}
+                            <input
                                 name="sex"
                                 value="woman"
                                 type="radio"
@@ -55,7 +53,7 @@ class ComplexForm extends Component {
                 <${ComplexFormRow} title="Agreement" label=${false}>
                     <p>
                         <label>
-                            <${Input}
+                            <input
                                 name="agree"
                                 value="true"
                                 type="checkbox"
