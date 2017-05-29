@@ -1,5 +1,4 @@
 import { Component, connect, jsx } from 'rerender';
-import routes from '../../configs/routes';
 import SET_ROUTE from '../../events/routes/SET_ROUTE';
 import NAVIGATE_TO_URL from '../../events/routes/NAVIGATE_TO_URL';
 import PageLoader from '../pageLoader/PageLoader';
@@ -45,14 +44,11 @@ Application.antibind = ['handlePopState', 'handleClick'];
 
 const select = ({
     routes: {
-        route = routes['/404']
+        route
     }
 }) => ({ route });
 
 export default connect({
-    init() {
-        this.dispatch(SET_ROUTE, this.props.initialRoute);
-    },
     select,
     merge: false
 })(Application);

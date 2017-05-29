@@ -1,5 +1,5 @@
-function todosById(todos = []) {
-    return todos.reduce((memo, item) => {
+function todosById({ getState }) {
+    return getState(['todos', 'list']).reduce((memo, item) => {
         memo[item.id] = item;
 
         return memo;

@@ -3,19 +3,19 @@ const routes = {
         page: 'Index',
         title: 'Main page'
     },
-    '/todos': {
+    '/todos/': {
         page: 'Todos',
         title: 'Todos page'
     },
-    '/todos/:id': {
+    '/todos/:id/': {
         page: 'Todo',
         title: 'Todos page'
     },
-    '/forms': {
+    '/forms/': {
         page: 'Forms',
         title: 'Forms page'
     },
-    '/404': {
+    '/404/': {
         page: 'Error404',
         title: 'Not found'
     }

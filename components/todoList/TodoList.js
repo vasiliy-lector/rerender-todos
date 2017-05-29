@@ -1,7 +1,6 @@
-import { memoize } from 'ramda';
+import memoize from 'ramda/src/memoize';
 import { Component, connect, jsx } from 'rerender';
 import TodoListItem from './TodoListItem';
-import GET_TODOS from '../../events/todos/GET_TODOS';
 import ADD_TODO from '../../events/todos/ADD_TODO';
 import REMOVE_TODO from '../../events/todos/REMOVE_TODO';
 
@@ -68,11 +67,15 @@ class TodoList extends Component {
 
 TodoList.antibind = ['handleSubmit', 'handleInput', 'handleNewTodoRef'];
 
-const init = dispatch => dispatch(GET_TODOS);
 const select = ({
     todos: {
         list: todos
     }
 }) => ({ todos });
 
-export default connect({ init, select })(TodoList);
+export default connect({
+    // init() {
+    //     this.dispatch(GET_TODOS);
+    // },
+    select
+})(TodoList);

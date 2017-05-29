@@ -1,3 +1,3 @@
-export default function dehydrate(state) {
-    return state;
+export default function dehydrate({ getState }) {
+    return getState();
 }

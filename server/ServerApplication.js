@@ -6,7 +6,7 @@ import debug from 'debug';
 import routes from '../configs/routes';
 import staticConfig from '../configs/static';
 import env from '../configs/env';
-import rehydrate from '../selectors/rehydrate';
+import rehydrate from '../reducers/rehydrate';
 import Application from '../components/application/Application';
 
 defaults(process.env, env);
@@ -48,7 +48,7 @@ class ServerApplication {
 
     requestHandler(request, response) {
         try {
-            this.sendPage(request, response);
+            this.sendPage(request.path, response);
         } catch (error) {
             this.send500(error, response);
         }
@@ -58,16 +58,19 @@ class ServerApplication {
         logInfo('Request path', path);
 
         let route = routes[path];
-        logInfo('route', route);
+        logInfo('route', route.title);
 
         if (!route) {
             response.status(404);
-            route = routes['/404'];
+            route = routes['/404/'];
         }
 
-        const store = new Store({ rehydrate });
+        const state = {
+            routes: { route }
+        };
+        const store = new Store({ state, rehydrate });
 
-        response.send(renderServer(jsx `<${Application} initialRoute=${route}/>`, {
+        response.send(renderServer(jsx `<${Application} />`, {
             store,
             title: route.title,
             head: this.getCss(),
