@@ -16,7 +16,7 @@ class TodoList extends Component {
 
     handleSubmit(event) {
         this.dispatch(ADD_TODO, {
-            text: this.state.newTodoValue
+            text: this.newTodoInput.get('value')
         });
 
         this.setState({ newTodoValue: '' });
@@ -41,7 +41,7 @@ class TodoList extends Component {
             ${todos.map(todo => jsx `<${TodoListItem}
                 key=${todo.id}
                 todo=${todo}
-                removeTodo=${this.bindRemove(todo.id)}
+                onRemove=${this.bindRemove(todo.id)}
             />`)}
         </ul>`;
 
