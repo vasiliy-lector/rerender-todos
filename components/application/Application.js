@@ -5,7 +5,7 @@ import PageLoader from '../pageLoader/PageLoader';
 
 class Application extends Component {
     init() {
-        this.on('link:clicked', this.handleClick);
+        this.on('a:clicked', this.handleClick);
     }
 
     componentDidMount() {
@@ -26,7 +26,8 @@ class Application extends Component {
         this.dispatch(SET_ROUTE, event.state.route);
     }
 
-    handleClick(event, domEvent, url) {
+    handleClick(event) {
+        const { url, domEvent } = event.payload;
         const external = /s^(\w*:)?\/\//.test(url);
 
         if (url && !external) {
@@ -42,11 +43,13 @@ class Application extends Component {
 
 Application.antibind = ['handlePopState', 'handleClick'];
 
-const select = ({
+function select ({
     routes: {
         route
     }
-}) => ({ route });
+}) {
+    return { route };
+}
 
 export default connect({
     select,

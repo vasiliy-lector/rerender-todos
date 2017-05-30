@@ -1,13 +1,16 @@
 import { Component, jsx } from 'rerender';
 
-export default class A extends Component {
+class A extends Component {
 
     handleRef(ref) {
         this.ref = ref;
     }
 
     handleClick(event) {
-        this.trigger('a:clicked', event, this.ref.get('href'));
+        this.trigger('a:clicked', {
+            domEvent: event,
+            url: this.ref.get('href')
+        });
     }
 
     render() {
@@ -18,3 +21,7 @@ export default class A extends Component {
         >${this.children}</a>`;
     }
 }
+
+A.antibind = ['handleClick', 'handleRef'];
+
+export default A;

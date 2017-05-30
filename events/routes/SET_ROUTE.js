@@ -1,7 +1,7 @@
-import changeRoute from '../../reducers/routes/changeRoute';
+import setRoute from '../../reducers/routes/setRoute';
 
 export default {
-    name: 'SET_ROUTES',
-    reducers: [ changeRoute ],
+    name: 'SET_ROUTE',
+    reducers: [ setRoute ],
     cache: true
 };
