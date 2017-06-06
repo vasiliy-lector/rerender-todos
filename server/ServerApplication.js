@@ -70,12 +70,16 @@ class ServerApplication {
         };
         const store = new Store({ state, rehydrate });
 
-        response.send(renderServer(jsx `<${Application} />`, {
+        renderServer(jsx `<${Application} />`, {
             store,
+            streamEnabled: true,
+            write: response.write.bind(response),
             title: route.title,
             head: this.getCss(),
             bodyEnd: this.getScripts()
-        }));
+        });
+
+        response.end();
     }
 
     send500(error, response) {
