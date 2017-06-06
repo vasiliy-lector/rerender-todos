@@ -18,7 +18,7 @@ class Application extends Component {
         // setInterval(() => {
         //     let { route } = this.props;
         //
-        //     this.dispatch(NAVIGATE_TO_URL, route === 'Index' ? '/forms/' : '/');
+        //     this.dispatch(NAVIGATE_TO_URL, route.page === 'Index' ? '/forms/' : '/');
         // }, 2000);
     }
 

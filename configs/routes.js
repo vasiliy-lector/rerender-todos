@@ -3,6 +3,10 @@ const routes = {
         page: 'Index',
         title: 'Main page'
     },
+    '/stream/': {
+        page: 'Stream',
+        title: 'Stream example page'
+    },
     '/todos/': {
         page: 'Todos',
         title: 'Todos page'
