@@ -1,18 +1,10 @@
 import { jsx } from 'rerender';
-import StreamItem from '../components/streamItem/StreamItem';
+import StreamItems from '../components/streamItems/StreamItems';
 
 function Stream(){
-    const items = [];
-
-    for (let i = 0; i < 5000; i++) {
-        items.push(jsx `<${StreamItem} key=${'s' + i} />`);
-    }
-
     return jsx `<div>
         <div style=${{ backgroundColor: 'pink', height: '200px' }} />
-        <div>
-            ${items}
-        </div>
+        <${StreamItems} />
     </div>`;
 }
 
