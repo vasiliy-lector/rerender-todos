@@ -1,5 +1,5 @@
 import express from 'express';
-import { renderServer, jsx, Store } from 'rerender';
+import { renderServer, jsx, Store, Stream } from 'rerender';
 import defaults from 'lodash/defaults';
 import find from 'lodash/find';
 import debug from 'debug';
@@ -70,12 +70,19 @@ class ServerApplication {
         };
         const store = new Store({ state, rehydrate });
 
-        response.send(renderServer(jsx `<${Application} />`, {
+        const stream = new Stream();
+        response.writeHead(200, {'Content-Type': 'text/html; charset=utf8'});
+        stream.on('data', html => response.write(html));
+        stream.on('end', () => response.end());
+
+        renderServer(jsx `<${Application} />`, {
             store,
+            stream,
+            wrap: true,
             title: route.title,
             head: this.getCss(),
             bodyEnd: this.getScripts()
-        }));
+        });
     }
 
     send500(error, response) {
