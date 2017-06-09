@@ -2,9 +2,9 @@ import { renderClient, jsx } from 'rerender';
 import Application from '../components/application/Application.js';
 
 class ClientApplication {
-    constructor() {
-        renderClient(jsx `<${Application} />`);
+    constructor(initialRoute) {
+        renderClient(jsx `<${Application} initialRoute=${initialRoute} />`);
     }
 }
 
-new ClientApplication();
+new ClientApplication(window.__INITIAL_ROUTE);

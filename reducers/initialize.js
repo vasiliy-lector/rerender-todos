@@ -1,4 +1,4 @@
-import todos from './todos/rehydrate';
+import todos from './todos/initialize';
 
 const reducers = [
     todos

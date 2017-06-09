@@ -1,12 +1,11 @@
 import express from 'express';
-import { renderServer, jsx, Store, Stream } from 'rerender';
+import { renderServer, jsx, Stream } from 'rerender';
 import defaults from 'lodash/defaults';
 import find from 'lodash/find';
 import debug from 'debug';
 import routes from '../configs/routes';
 import staticConfig from '../configs/static';
 import env from '../configs/env';
-import rehydrate from '../reducers/rehydrate';
 import Application from '../components/application/Application';
 
 defaults(process.env, env);
@@ -75,7 +74,7 @@ class ServerApplication {
             wrap: true,
             title: route.title,
             head: this.getCss(),
-            bodyEnd: this.getScripts()
+            bodyEnd: `<script>window.__INITIAL_ROUTE = ${JSON.stringify(route)};<script>` + this.getScripts()
         });
     }
 

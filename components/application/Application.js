@@ -1,4 +1,5 @@
 import { Component, connect, jsx } from 'rerender';
+import INITIALIZE from '../../events/INITIALIZE';
 import SET_ROUTE from '../../events/routes/SET_ROUTE';
 import NAVIGATE_TO_URL from '../../events/routes/NAVIGATE_TO_URL';
 import PageLoader from '../pageLoader/PageLoader';
@@ -52,6 +53,10 @@ function select ({
 }
 
 export default connect({
+    init() {
+        this.dispatch(INITIALIZE);
+        this.dispatch(SET_ROUTE, this.props.initialRoute);
+    },
     select,
     merge: false
 })(Application);

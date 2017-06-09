@@ -1,15 +1,17 @@
-import { jsx } from 'rerender';
+import { jsx, Component } from 'rerender';
+import LONG_ACTION from '../../events/stream/LONG_ACTION';
 
-export default function StreamItem() {
-    let i = 1000000;
-    while(i > 0) {
-        i--;
+export default class StreamItem extends Component {
+    init() {
+        this.dispatch(LONG_ACTION);
     }
 
-    return jsx `<div style=${{
-        backgroundColor: 'blue',
-        height: '10px',
-        width: '10px',
-        float: 'left'
-    }}></div>`;
+    render() {
+        return jsx `<div style=${{
+            backgroundColor: 'blue',
+            height: '10px',
+            width: '10px',
+            float: 'left'
+        }}></div>`;
+    }
 }
