@@ -65,18 +65,12 @@ class ServerApplication {
             route = routes['/404/'];
         }
 
-        const state = {
-            routes: { route }
-        };
-        const store = new Store({ state, rehydrate });
-
         const stream = new Stream();
         response.writeHead(200, {'Content-Type': 'text/html; charset=utf8'});
         stream.on('data', html => response.write(html));
         stream.on('end', () => response.end());
 
-        renderServer(jsx `<${Application} />`, {
-            store,
+        renderServer(jsx `<${Application} initialRoute=${route}/>`, {
             stream,
             wrap: true,
             title: route.title,
@@ -87,9 +81,10 @@ class ServerApplication {
 
     send500(error, response) {
         logError(error);
-        response.status(500);
-        response.send(`<h1>Error 500</h1>
-            <p>${process.env.NODE_ENV === 'development' ? error + '' : 'Internal server error'}</p>`);
+        response.write(`<script>
+            document.body.innerHTML = '<h1>Error 500</h1>' + ${process.env.NODE_ENV === 'development' ? JSON.stringify(error.toString()) : ''};
+        </script>`);
+        response.end();
     }
 
     getCss() {
