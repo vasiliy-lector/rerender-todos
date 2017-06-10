@@ -74,7 +74,7 @@ class ServerApplication {
             wrap: true,
             title: route.title,
             head: this.getCss(),
-            bodyEnd: `<script>window.__INITIAL_ROUTE = ${JSON.stringify(route)};<script>` + this.getScripts()
+            bodyEnd: `<script>window.__INITIAL_ROUTE = ${JSON.stringify(route)};</script>` + this.getScripts()
         });
     }
 
