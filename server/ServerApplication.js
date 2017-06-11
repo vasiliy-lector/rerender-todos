@@ -67,6 +67,7 @@ class ServerApplication {
         const stream = new Stream();
         response.writeHead(200, {'Content-Type': 'text/html; charset=utf8'});
         stream.on('data', html => response.write(html));
+        stream.on('error', error => this.send500(error, response));
         stream.on('end', () => response.end());
 
         renderServer(jsx `<${Application} initialRoute=${route}/>`, {
