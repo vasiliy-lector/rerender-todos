@@ -60,15 +60,31 @@ class ServerApplication {
         logInfo('route', route.title);
 
         if (!route) {
-            response.status(404);
+            response.writeHead(404, {'Content-Type': 'text/html; charset=utf8'});
             route = routes['/404/'];
+        } else {
+            response.writeHead(200, {'Content-Type': 'text/html; charset=utf8'});
         }
 
         const stream = new Stream();
-        response.writeHead(200, {'Content-Type': 'text/html; charset=utf8'});
-        stream.on('data', html => response.write(html));
-        stream.on('error', error => this.send500(error, response));
-        stream.on('end', () => response.end());
+        let ended;
+        let sended;
+        stream.on('data', html => {
+            sended = response.write(html);
+        });
+        response.on('drain', () => {
+            sended = true;
+        });
+        stream.on('error', error => ended ? logError(error) : this.send500(error, response));
+        stream.on('end', () => {
+            stream.un('data');
+            stream.un('end');
+            if (sended) {
+                response.end();
+            } else {
+                response.on('drain', () => response.end());
+            }
+        });
 
         renderServer(jsx `<${Application} initialRoute=${route}/>`, {
             stream,

@@ -7,6 +7,10 @@ const routes = {
         page: 'Stream',
         title: 'Stream example page'
     },
+    '/controllers/': {
+        page: 'Controllers',
+        title: 'Controllers example page'
+    },
     '/todos/': {
         page: 'Todos',
         title: 'Todos page'

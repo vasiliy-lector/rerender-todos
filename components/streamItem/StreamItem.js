@@ -8,9 +8,9 @@ export default class StreamItem extends Component {
 
     render() {
         return jsx `<div style=${{
-            backgroundColor: 'blue',
+            backgroundColor: `rgb(0, 0, ${this.props.index % 255})`,
             height: '10px',
-            width: '10px',
+            width: '50px',
             float: 'left'
         }}></div>`;
     }

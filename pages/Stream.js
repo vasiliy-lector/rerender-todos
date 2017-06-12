@@ -4,7 +4,7 @@ import StreamItem from '../components/streamItem/StreamItem';
 function StreamItems() {
     const items = [];
 
-    for (let i = 0; i < 5000; i++) {
+    for (let i = 0; i < 1000; i++) {
         items.push(jsx `<${StreamItem} key=${'s' + i} index=${i} />`);
     }
 
