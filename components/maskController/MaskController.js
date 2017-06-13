@@ -25,7 +25,7 @@ class MaskController extends Component {
         this.merge = memoizeLast(this.merge.bind(this));
         if (this.props.mask) {
             this.setState({
-                maxlength: this.props.mask.length
+                maxLength: this.props.mask.length
             });
         }
         this.setState({
@@ -38,7 +38,7 @@ class MaskController extends Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.mask !== this.props.mask) {
             this.setState({
-                maxlength: nextProps.mask ? nextProps.mask.length : null
+                maxLength: nextProps.mask ? nextProps.mask.length : null
             });
         }
     }

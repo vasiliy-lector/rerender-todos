@@ -89,6 +89,7 @@ class ServerApplication {
         renderServer(jsx `<${Application} initialRoute=${route}/>`, {
             stream,
             wrap: true,
+            applicationId: 'application',
             title: route.title,
             head: this.getCss(),
             bodyEnd: `<script>window.__INITIAL_ROUTE = ${JSON.stringify(route)};</script>` + this.getScripts()
