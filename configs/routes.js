@@ -11,6 +11,10 @@ const routes = {
         page: 'Controllers',
         title: 'Controllers example page'
     },
+    '/sierpinsky/': {
+        page: 'Sierpinsky',
+        title: 'Sierpinsky triangle example page'
+    },
     '/todos/': {
         page: 'Todos',
         title: 'Todos page'

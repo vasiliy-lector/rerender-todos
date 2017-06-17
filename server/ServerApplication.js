@@ -90,6 +90,7 @@ class ServerApplication {
             stream,
             wrap: true,
             applicationId: 'application',
+            fullHash: true,
             title: route.title,
             head: this.getCss(),
             bodyEnd: `<script>window.__INITIAL_ROUTE = ${JSON.stringify(route)};</script>` + this.getScripts()

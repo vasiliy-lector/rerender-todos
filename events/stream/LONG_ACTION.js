@@ -3,6 +3,7 @@ import { Promise } from 'rerender';
 export default {
     name: 'LONG_ACTION',
     action() {
-        return new Promise(resolve => setTimeout(resolve, 10));
-    }
+        return new Promise(resolve => setTimeout(resolve, 1000));
+    },
+    cache: true
 };
