@@ -1,5 +1,5 @@
 import express from 'express';
-import { renderServer, jsx, Stream } from 'rerender';
+import { renderServer, jsx } from 'rerender';
 import defaults from 'lodash/defaults';
 import find from 'lodash/find';
 import debug from 'debug';
@@ -66,34 +66,28 @@ class ServerApplication {
             response.writeHead(200, {'Content-Type': 'text/html; charset=utf8'});
         }
 
-        const stream = new Stream();
-        let ended;
-        let sended;
-        stream.on('data', html => {
-            sended = response.write(html);
-        });
-        response.on('drain', () => {
+        let ended; let sended; response.on('drain', () => {
             sended = true;
-        });
-        stream.on('error', error => ended ? logError(error) : this.send500(error, response));
-        stream.on('end', () => {
-            stream.un('data');
-            stream.un('end');
-            if (sended) {
-                response.end();
-            } else {
-                response.on('drain', () => response.end());
-            }
         });
 
         renderServer(jsx `<${Application} initialRoute=${route}/>`, {
-            stream,
             wrap: true,
             applicationId: 'application',
             fullHash: true,
             title: route.title,
             head: this.getCss(),
-            bodyEnd: `<script>window.__INITIAL_ROUTE = ${JSON.stringify(route)};</script>` + this.getScripts()
+            bodyEnd: `<script>window.__INITIAL_ROUTE = ${JSON.stringify(route)};</script>` + this.getScripts(),
+            onData: html => {
+                sended = response.write(html);
+            },
+            onEnd: () => {
+                if (sended) {
+                    response.end();
+                } else {
+                    response.on('drain', () => response.end());
+                }
+            },
+            onError: error => ended ? logError(error) : this.send500(error, response)
         });
     }
 
