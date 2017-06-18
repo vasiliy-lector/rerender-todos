@@ -21,6 +21,7 @@
     "browserify": "^13.0.0",
     "debug": "^2.2.0",
     "eslint": "~2.2.0",
+    "eslint-plugin-react": "^7.1.0",
     "jest-cli": "^0.8.2",
     "less": "^2.6.1",
     "watchify": "^3.7.0"

@@ -1,4 +1,4 @@
-import { jsx, Component } from 'rerender';
+import { Component, createTemplate } from 'rerender';
 import now from 'performance-now';
 
 const targetSize = 25;
@@ -33,20 +33,20 @@ class Dot extends Component {
             lineHeight: (s) + 'px'
         };
 
-        return jsx `<div style=${style} onmouseenter=${() => this.enter()} onmouseleave=${() => this.leave()}>
-            ${props.text}
-        </div>`;
+        return <div style={style} onmouseenter={() => this.enter()} onmouseleave={() => this.leave()}>
+            {props.text}
+        </div>;
     }
 }
 
 function SierpinskyTriangle({ x, y, s}, children) {
     if (s <= targetSize) {
-        return jsx `<${Dot}
-            x=${x - (targetSize / 2)}
-            y=${y - (targetSize / 2)}
-            size=${targetSize}
-            text=${children}
-        />`;
+        return <Dot
+            x={x - (targetSize / 2)}
+            y={y - (targetSize / 2)}
+            size={targetSize}
+            text={children}
+        />;
     }
 
     var slowDown = true;
@@ -60,17 +60,17 @@ function SierpinskyTriangle({ x, y, s}, children) {
 
     s /= 2;
 
-    return jsx `<div>
-        <${SierpinskyTriangle} x=${x} y=${y - (s / 2)} s=${s}>
-            ${children}
-        </${SierpinskyTriangle}>
-        <${SierpinskyTriangle} x=${x - s} y=${y + (s / 2)} s=${s}>
-            ${children}
-        </${SierpinskyTriangle}>
-        <${SierpinskyTriangle} x=${x + s} y=${y + (s / 2)} s=${s}>
-            ${children}
-        </${SierpinskyTriangle}>
-    </div>`;
+    return [
+        <SierpinskyTriangle x={x} y={y - (s / 2)} s={s}>
+            {children}
+        </SierpinskyTriangle>,
+        <SierpinskyTriangle x={x - s} y={y + (s / 2)} s={s}>
+            {children}
+        </SierpinskyTriangle>,
+        <SierpinskyTriangle x={x + s} y={y + (s / 2)} s={s}>
+            {children}
+        </SierpinskyTriangle>
+    ];
 }
 
 const containerStyle = {
@@ -86,16 +86,16 @@ const containerStyle = {
 class Sierpinsky extends Component {
     init() {
         this.setState({
-            seconds: '0'
+            seconds: '3'
         });
     }
 
     render() {
-        return jsx `<div style=${containerStyle}>
-            <${SierpinskyTriangle} x=${0} y=${0} s=${1000}>
-                ${this.state.seconds}
-            </${SierpinskyTriangle}>
-        </div>`;
+        return <div style={containerStyle}>
+            <SierpinskyTriangle x={0} y={0} s={1000}>
+                {this.state.seconds}
+            </SierpinskyTriangle>
+        </div>;
     }
 }
 

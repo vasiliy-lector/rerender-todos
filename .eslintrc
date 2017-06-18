@@ -1,5 +1,13 @@
 {
     "parser": "babel-eslint",
+    "plugins": [
+        "react"
+    ],
+    "settings": {
+        "react": {
+            "pragma": "createTemplate"
+        }
+    },
     "rules": {
         "indent": [
             2,
@@ -26,7 +34,9 @@
                 "vars": "all",
                 "args": "after-used"
             }
-        ]
+        ],
+        "react/jsx-uses-react": 1,
+        "react/jsx-uses-vars": 1
     },
     "env": {
         "es6": true,
@@ -34,8 +44,11 @@
         "browser": true
     },
     "extends": "eslint:recommended",
-    "ecmaFeatures": {
-        "experimentalObjectRestSpread": true,
-        "modules": true
+    "parserOptions": {
+        "ecmaFeatures": {
+            "experimentalObjectRestSpread": true,
+            "modules": true,
+            "jsx": true
+        }
     }
 }
