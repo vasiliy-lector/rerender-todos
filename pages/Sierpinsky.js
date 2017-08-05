@@ -1,4 +1,4 @@
-import { Component, createTemplate } from 'rerender';
+import { Component, h as createTemplate } from 'rerender';
 import now from 'performance-now';
 
 const targetSize = 25;
