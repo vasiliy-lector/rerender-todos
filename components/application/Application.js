@@ -7,6 +7,8 @@ import PageLoader from '../pageLoader/PageLoader';
 class Application extends Component {
     init() {
         this.on('a:clicked', this.handleClick);
+        this.handlePopState = this.handlePopState.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     componentDidMount() {
@@ -41,8 +43,6 @@ class Application extends Component {
         return jsx `<${PageLoader} page=${this.props.route.page} />`;
     }
 }
-
-Application.antibind = ['handlePopState', 'handleClick'];
 
 function select ({
     routes: {

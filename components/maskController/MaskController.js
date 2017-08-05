@@ -22,6 +22,10 @@ const navigationKeyCodes = {
 
 class MaskController extends Component {
     init() {
+        this.handleRef = this.handleRef.bind(this);
+        this.handleKeyDown = this.handleKeyDown.bind(this);
+        this.handleInput = this.handleInput.bind(this);
+
         this.merge = memoizeLast(this.merge.bind(this));
         if (this.props.mask) {
             this.setState({

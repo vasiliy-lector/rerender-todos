@@ -66,8 +66,6 @@ class ComplexForm extends Component {
     }
 }
 
-ComplexForm.antibind = ['handleSubmit'];
-
 ComplexForm.singleton = true;
 
 export default ComplexForm;

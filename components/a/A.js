@@ -1,6 +1,10 @@
 import { Component, jsx } from 'rerender';
 
 class A extends Component {
+    init() {
+        this.handleRef = this.handleRef.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+    }
 
     handleRef(ref) {
         this.ref = ref;
@@ -21,7 +25,5 @@ class A extends Component {
         >${this.children}</a>`;
     }
 }
-
-A.antibind = ['handleClick', 'handleRef'];
 
 export default A;

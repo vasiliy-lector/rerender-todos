@@ -6,6 +6,9 @@ import REMOVE_TODO from '../../events/todos/REMOVE_TODO';
 
 class TodoList extends Component {
     init() {
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleInput = this.handleInput.bind(this);
+        this.handleNewTodoRef = this.handleNewTodoRef.bind(this);
         this.state.newTodoValue = '';
         this.bindRemove = memoize(id => this.handleRemove.bind(this, id));
     }
@@ -64,8 +67,6 @@ class TodoList extends Component {
         </div>`;
     }
 }
-
-TodoList.antibind = ['handleSubmit', 'handleInput', 'handleNewTodoRef'];
 
 const select = ({
     todos: {
