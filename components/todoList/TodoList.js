@@ -63,7 +63,7 @@ class TodoList extends Component {
                 </form>
             </div>
             Text from input: "{this.state.newTodoValue}"
-            {this.children}
+            {this.props.children}
         </div>;
     }
 }

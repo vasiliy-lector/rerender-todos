@@ -1,6 +1,6 @@
 import { h } from 'rerender';
 
-function ComplexFormRow({ title, label }, children) {
+function ComplexFormRow({ title, label, children }) {
     return <div className="complex-form__row">
         <div className="complex-form__row-title">
             {label ? <label>{title}</label> : title}

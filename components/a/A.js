@@ -22,7 +22,7 @@ class A extends Component {
             ref={this.handleRef}
             onclick={this.handleClick}
             {...this.props}
-        >{this.children}</a>;
+        >{this.props.children}</a>;
     }
 }
 

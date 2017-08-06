@@ -39,7 +39,7 @@ class Dot extends Component {
     }
 }
 
-function SierpinskyTriangle({ x, y, s}, children) {
+function SierpinskyTriangle({ x, y, s, children}) {
     if (s <= targetSize) {
         return <Dot
             x={x - (targetSize / 2)}
