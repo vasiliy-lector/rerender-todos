@@ -121,8 +121,6 @@ class MaskController extends Component {
     }
 }
 
-MaskController.antibind = ['handleKeyDown', 'handleRef', 'handleInput'];
-
 export const mask = createController(MaskController)();
 
 export default MaskController;

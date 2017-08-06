@@ -1,10 +1,10 @@
-import { jsx } from 'rerender';
+import { h } from 'rerender';
 
 export default function TodoListItem({ todo, onRemove }) {
-    return jsx `<li className="todo-list__item">
-        ${todo.text}
+    return <li className="todo-list__item">
+        {todo.text}
         <button
             className="todo-list__remove"
-            onclick=${onRemove}>Удалить</button>
-    </li>`;
+            onclick={onRemove}>Удалить</button>
+    </li>;
 }

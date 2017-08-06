@@ -1,4 +1,4 @@
-import { Component, jsx } from 'rerender';
+import { Component, h } from 'rerender';
 
 class A extends Component {
     init() {
@@ -18,11 +18,11 @@ class A extends Component {
     }
 
     render() {
-        return jsx `<a
-            ref=${this.handleRef}
-            onclick=${this.handleClick}
-            ${this.props}
-        >${this.children}</a>`;
+        return <a
+            ref={this.handleRef}
+            onclick={this.handleClick}
+            {...this.props}
+        >{this.children}</a>;
     }
 }
 

@@ -1,5 +1,5 @@
 import memoize from 'ramda/src/memoize';
-import { Component, connect, jsx } from 'rerender';
+import { Component, connect, h } from 'rerender';
 import TodoListItem from './TodoListItem';
 import ADD_TODO from '../../events/todos/ADD_TODO';
 import REMOVE_TODO from '../../events/todos/REMOVE_TODO';
@@ -40,31 +40,31 @@ class TodoList extends Component {
 
     render() {
         const { todos, buttonText } = this.props;
-        const items = jsx `<ul className="todo-list__list">
-            ${todos.map(todo => jsx `<${TodoListItem}
-                key=${todo.id}
-                todo=${todo}
-                onRemove=${this.bindRemove(todo.id)}
-            />`)}
-        </ul>`;
+        const items = <ul className="todo-list__list">
+            {todos.map(todo => <TodoListItem
+                key={todo.id}
+                todo={todo}
+                onRemove={this.bindRemove(todo.id)}
+            />)}
+        </ul>;
 
-        return jsx `<div className="todo-list">
-            ${items}
+        return <div className="todo-list">
+            {items}
             <div className="todo-list__add">
-                <form onsubmit=${this.handleSubmit}>
+                <form onsubmit={this.handleSubmit}>
                     <input
-                        ref=${this.handleNewTodoRef}
+                        ref={this.handleNewTodoRef}
                         value=""
                         name="text"
                         autocomplete="off"
-                        oninput=${this.handleInput}
+                        oninput={this.handleInput}
                         placeholder="New todo" />
-                    <button>${buttonText}</button>
+                    <button>{buttonText}</button>
                 </form>
             </div>
-            Text from input: "${this.state.newTodoValue}"
-            ${this.children}
-        </div>`;
+            Text from input: "{this.state.newTodoValue}"
+            {this.children}
+        </div>;
     }
 }
 

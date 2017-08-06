@@ -1,16 +1,16 @@
-import { jsx } from 'rerender';
+import { h } from 'rerender';
 
 function Layout({ title }, children){
-    return jsx `<div className="layout">
+    return <div className="layout">
         <div className="layout__container">
             <div className="layout__header">
-                ${title}
+                {title}
             </div>
             <div className="content">
-                ${children}
+                {children}
             </div>
         </div>
-    </div>`;
+    </div>;
 }
 
 Layout.defaults = {

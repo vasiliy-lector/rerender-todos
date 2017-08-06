@@ -1,5 +1,5 @@
 import express from 'express';
-import { renderServer, jsx } from 'rerender';
+import { renderServer, h } from 'rerender';
 import defaults from 'lodash/defaults';
 import find from 'lodash/find';
 import debug from 'debug';
@@ -70,7 +70,7 @@ class ServerApplication {
             sended = true;
         });
 
-        renderServer(jsx `<${Application} initialRoute=${route}/>`, {
+        renderServer(<Application initialRoute={route}/>, {
             wrap: true,
             applicationId: 'application',
             fullHash: true,

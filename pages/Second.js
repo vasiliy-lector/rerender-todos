@@ -1,10 +1,10 @@
-import { jsx } from 'rerender';
+import { h } from 'rerender';
 import Layout from '../components/layout/Layout';
 
 function Second(){
-    return jsx `<${Layout} title="Title of second page">
+    return <Layout title="Title of second page">
         <p>Demo second page</p>
-    </${Layout}>`;
+    </Layout>;
 }
 
 export default Second;

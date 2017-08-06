@@ -5,7 +5,7 @@
     ],
     "settings": {
         "react": {
-            "pragma": "createTemplate"
+            "pragma": "h"
         }
     },
     "rules": {
